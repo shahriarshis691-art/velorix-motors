@@ -138,3 +138,18 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     letter-spacing: 0.2em;
   }
 }
+
+@keyframes catalog-kenburns {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.16) translate3d(-2.5%, -3%, 0);
+  }
+}
+
+.catalog-kenburns {
+  animation: catalog-kenburns 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+

@@ -22,7 +22,7 @@ export default function HomePage() {
         }}
         onBookAppointment={() => setAppointmentOpen(true)}
       />
-      <Collections />
+      <Collections onBookAppointment={() => setAppointmentOpen(true)} />
       <Services />
       <About />
       <TestDriveModal

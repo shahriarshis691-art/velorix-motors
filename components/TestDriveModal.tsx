@@ -6,12 +6,12 @@ import { CalendarClock, Car, Hash, MapPin, Phone, User, X } from "lucide-react";
 import BrushedMetalButton from "@/components/ui/BrushedMetalButton";
 
 const MODELS = [
+  "Land Rover Defender 90",
+  "BMW iX",
+  "Nissan Z",
   "VX-1 Apex",
   "VX-S Coupe",
   "VX-GT Touring",
-  "VX-R Track",
-  "VX-Limo Signature",
-  "VX-Cross SUV",
 ];
 
 const SHOWROOMS = [
