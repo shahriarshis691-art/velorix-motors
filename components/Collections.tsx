@@ -9,32 +9,37 @@ const CARS = [
   {
     id: "honda",
     name: "HONDA",
-    image: "/images/honda-civic-coast.png",
-    alt: "Metallic crimson Honda Civic sedan on a coastal highway",
+    image: "/images/honda-civic.jpg",
+    alt: "Metallic grey Honda Civic sedan, front three-quarter view",
+    objectClass: "object-cover object-bottom",
   },
   {
     id: "toyota",
     name: "TOYOTA",
-    image: "/images/toyota-harrier-coast.png",
-    alt: "Pearl white Toyota Harrier SUV on a coastal highway",
+    image: "/images/toyota-corolla.jpg",
+    alt: "White Toyota Corolla Hybrid sedan on a studio background",
+    objectClass: "object-contain object-center p-3 sm:p-4",
   },
   {
     id: "bmw",
     name: "BMW",
-    image: "/images/bmw-coast.png",
-    alt: "Gunmetal grey BMW sedan cruising a coastal highway",
+    image: "/images/bmw-5-series.jpg",
+    alt: "Silver BMW 5 Series sedan in motion, front three-quarter view",
+    objectClass: "object-cover object-center",
   },
   {
     id: "nissan",
     name: "NISSAN",
-    image: "/images/nissan-z-coast.png",
-    alt: "Metallic red Nissan Z on a coastal highway",
+    image: "/images/nissan-versa.jpg",
+    alt: "White Nissan Versa sedan on a studio background",
+    objectClass: "object-contain object-center p-3 sm:p-4",
   },
   {
     id: "allion",
     name: "ALLION",
-    image: "/images/toyota-allion-coast.png",
-    alt: "Pearl white Toyota Allion sedan on a coastal highway",
+    image: "/images/toyota-allion.jpg",
+    alt: "Metallic silver Toyota Allion sedan, front three-quarter view",
+    objectClass: "object-cover object-center",
   },
 ] as const;
 
@@ -93,7 +98,7 @@ function CatalogPanel({
     >
       <Link
         href={`/models/${car.id}`}
-        className="group relative isolate block aspect-video w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition duration-500 hover:shadow-md"
+        className="group relative isolate block aspect-[16/10] w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition duration-500 hover:shadow-md"
         aria-label={`View ${car.name} models`}
       >
         <Image
@@ -101,11 +106,13 @@ function CatalogPanel({
           alt={car.alt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          className={`h-full w-full ${car.objectClass} transition-transform duration-700 ease-out group-hover:scale-[1.04]`}
           priority={index < 2}
         />
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white via-white/40 to-transparent" />
+        {!car.objectClass.includes("object-contain") && (
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white via-white/40 to-transparent" />
+        )}
 
         <span className="absolute bottom-4 left-5 z-10 font-display text-[11px] font-semibold uppercase tracking-[0.35em] text-neutral-900 sm:text-xs">
           {car.name}
