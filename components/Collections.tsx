@@ -46,24 +46,24 @@ export default function Collections({ onBookAppointment }: CollectionsProps) {
   return (
     <section
       id="collections"
-      className="relative scroll-mt-20 overflow-hidden bg-[#050505] px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+      className="relative scroll-mt-20 overflow-hidden bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
     >
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
-            <p className="font-display text-[11px] tracking-[0.4em] text-vx-red">
+            <p className="font-display text-[11px] tracking-[0.4em] text-neutral-500">
               THE GARAGE
             </p>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-[0.14em] sm:text-4xl">
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-[0.14em] text-neutral-900 sm:text-4xl">
               <span className="metallic-text">COLLECTIONS</span>
             </h2>
           </div>
-          <p className="hidden max-w-sm text-right text-xs leading-relaxed text-vx-silver/70 sm:block">
+          <p className="hidden max-w-sm text-right text-xs leading-relaxed text-neutral-500 sm:block">
             Coastal signatures. Open a marque to inspect re-conditioned stock.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {CARS.map((car, i) => (
             <CatalogPanel key={car.id} car={car} index={i} />
           ))}
@@ -93,7 +93,7 @@ function CatalogPanel({
     >
       <Link
         href={`/models/${car.id}`}
-        className="group relative isolate block aspect-video w-full overflow-hidden border border-white/10 bg-[#0a0a0a] transition duration-500 hover:border-cyan-300/30 hover:shadow-[0_0_28px_rgba(34,211,238,0.12)]"
+        className="group relative isolate block aspect-video w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition duration-500 hover:shadow-md"
         aria-label={`View ${car.name} models`}
       >
         <Image
@@ -105,9 +105,9 @@ function CatalogPanel({
           priority={index < 2}
         />
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white via-white/40 to-transparent" />
 
-        <span className="absolute bottom-4 left-5 z-10 font-display text-[11px] font-medium uppercase tracking-[0.35em] text-white/90 sm:text-xs">
+        <span className="absolute bottom-4 left-5 z-10 font-display text-[11px] font-semibold uppercase tracking-[0.35em] text-neutral-900 sm:text-xs">
           {car.name}
         </span>
       </Link>

@@ -59,7 +59,7 @@ export default function CatalogViewer({ car, onClose }: CatalogViewerProps) {
           <button
             type="button"
             aria-label="Close viewer"
-            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-neutral-900/40 backdrop-blur-sm"
             onClick={onClose}
           />
 
@@ -70,11 +70,11 @@ export default function CatalogViewer({ car, onClose }: CatalogViewerProps) {
             initial={{ opacity: 0, y: 24, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
-            className="relative z-10 flex h-[min(88vh,920px)] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0A0A0A]"
+            className="relative z-10 flex h-[min(88vh,920px)] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-xl"
           >
-            <header className="flex items-center justify-between border-b border-white/10 px-5 py-3">
+            <header className="flex items-center justify-between border-b border-neutral-200 px-5 py-3">
               <div>
-                <p className="font-display text-[10px] tracking-[0.35em] text-vx-silver/70">
+                <p className="font-display text-[10px] tracking-[0.35em] text-neutral-500">
                   {title}
                 </p>
                 <p className="metallic-text font-display text-sm font-bold tracking-[0.22em]">
@@ -84,7 +84,7 @@ export default function CatalogViewer({ car, onClose }: CatalogViewerProps) {
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-md p-1.5 text-vx-silver transition hover:bg-white/5 hover:text-white"
+                className="rounded-md p-1.5 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-900"
                 aria-label="Close"
               >
                 <X size={18} />
@@ -122,8 +122,8 @@ export default function CatalogViewer({ car, onClose }: CatalogViewerProps) {
               )}
             </div>
 
-            <footer className="flex items-center justify-between gap-4 border-t border-white/10 px-5 py-3">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-vx-silver/70">
+            <footer className="flex items-center justify-between gap-4 border-t border-neutral-200 px-5 py-3">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-neutral-500">
                 {car.mode === "zoom" && "Click to magnify · move to inspect"}
                 {car.mode === "rotate" && "Drag horizontally to orbit"}
                 {car.mode === "play" && "Cinematic front fascia study"}
@@ -131,7 +131,7 @@ export default function CatalogViewer({ car, onClose }: CatalogViewerProps) {
                 {car.mode === "arrow" && "Use arrows to traverse the fascia"}
               </p>
               {car.mode === "zoom" && (
-                <span className="flex items-center gap-2 text-[11px] tracking-[0.16em] text-vx-silver">
+                <span className="flex items-center gap-2 text-[11px] tracking-[0.16em] text-neutral-500">
                   <Search size={12} /> {Math.round(zoom * 100)}%
                 </span>
               )}
@@ -139,14 +139,14 @@ export default function CatalogViewer({ car, onClose }: CatalogViewerProps) {
                 <button
                   type="button"
                   onClick={() => setPlaying((v) => !v)}
-                  className="flex items-center gap-2 rounded-full border border-white/15 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-white"
+                  className="flex items-center gap-2 rounded-full border border-neutral-300 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-neutral-900"
                 >
                   {playing ? <Pause size={12} /> : <Play size={12} />}
                   {playing ? "Pause" : "Play"}
                 </button>
               )}
               {car.mode === "view" && (
-                <span className="flex items-center gap-2 text-[11px] tracking-[0.16em] text-vx-silver">
+                <span className="flex items-center gap-2 text-[11px] tracking-[0.16em] text-neutral-500">
                   <Eye size={12} /> Gaze
                 </span>
               )}
@@ -316,7 +316,7 @@ function ArrowStage({ src, alt }: { src: string; alt: string }) {
         type="button"
         aria-label="Pan left"
         onClick={() => setPan((v) => Math.max(-1, v - 1))}
-        className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white backdrop-blur-sm transition hover:bg-black/70"
+        className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-300 bg-white/90 text-neutral-900 shadow-sm transition hover:bg-white"
       >
         <ChevronLeft size={18} />
       </button>
@@ -324,7 +324,7 @@ function ArrowStage({ src, alt }: { src: string; alt: string }) {
         type="button"
         aria-label="Pan right"
         onClick={() => setPan((v) => Math.min(1, v + 1))}
-        className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white backdrop-blur-sm transition hover:bg-black/70"
+        className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-300 bg-white/90 text-neutral-900 shadow-sm transition hover:bg-white"
       >
         <ChevronRight size={18} />
       </button>

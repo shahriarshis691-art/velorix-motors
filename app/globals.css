@@ -3,91 +3,79 @@
 @tailwind utilities;
 
 :root {
-  --vx-black: #050505;
-  --vx-slate: #0b0f19;
-  --vx-red: #ef4444;
-  --vx-cyan: #22d3ee;
-  --vx-ice: #67e8f9;
-  --vx-silver: #94a3b8;
-  --vx-metal-light: #e2e8f0;
+  --vx-black: #0f172a;
+  --vx-slate: #111111;
+  --vx-red: #0070f3;
+  --vx-cyan: #0070f3;
+  --vx-ice: #e8eef6;
+  --vx-silver: #64748b;
+  --vx-metal-light: #f8fafc;
   --vx-metal-mid: #94a3b8;
-  --vx-metal-dark: #475569;
+  --vx-metal-dark: #334155;
   --vx-ink: #0f172a;
+  --vx-cream: #faf9f6;
   --metal-gradient: linear-gradient(
     180deg,
-    #e2e8f0 0%,
-    #94a3b8 50%,
-    #475569 100%
+    #1a1a1a 0%,
+    #111111 50%,
+    #0a0a0a 100%
   );
   --metal-text: linear-gradient(
     180deg,
-    #f8fafc 0%,
-    #e2e8f0 22%,
-    #94a3b8 52%,
-    #64748b 100%
+    #111111 0%,
+    #334155 48%,
+    #0f172a 100%
   );
 }
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  background: var(--vx-black);
-  color: #e2e8f0;
+  background: var(--vx-cream);
+  color: #0f172a;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: rgba(239, 68, 68, 0.35);
-  color: #fff;
+  background: rgba(0, 112, 243, 0.18);
+  color: #0f172a;
 }
 
-/* Chrome / brushed aluminum text */
+/* Gunmetal headings on cream */
 .metallic-text {
   background-image: var(--metal-text);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 0 rgba(15, 23, 42, 0.55));
 }
 
 .metallic-fill {
   background-image: var(--metal-gradient);
 }
 
-/* Showroom atmosphere */
 .showroom-vignette {
   background:
-    radial-gradient(ellipse 70% 55% at 50% 42%, transparent 20%, rgba(5, 5, 5, 0.55) 72%, #050505 100%),
-    radial-gradient(ellipse 90% 40% at 50% 100%, rgba(8, 47, 73, 0.28) 0%, transparent 70%);
+    radial-gradient(ellipse 70% 55% at 50% 42%, transparent 20%, rgba(250, 249, 246, 0.35) 72%, #faf9f6 100%),
+    radial-gradient(ellipse 90% 40% at 50% 100%, rgba(15, 23, 42, 0.04) 0%, transparent 70%);
 }
 
 .neon-pillar {
   background: linear-gradient(
     180deg,
-    rgba(103, 232, 249, 0) 0%,
-    rgba(34, 211, 238, 0.15) 12%,
-    rgba(165, 243, 252, 0.95) 50%,
-    rgba(34, 211, 238, 0.2) 88%,
-    rgba(103, 232, 249, 0) 100%
+    rgba(0, 112, 243, 0) 0%,
+    rgba(0, 112, 243, 0.08) 12%,
+    rgba(0, 112, 243, 0.35) 50%,
+    rgba(0, 112, 243, 0.08) 88%,
+    rgba(0, 112, 243, 0) 100%
   );
-  box-shadow:
-    0 0 18px 4px rgba(34, 211, 238, 0.45),
-    0 0 60px 12px rgba(14, 165, 233, 0.25),
-    inset 0 0 12px rgba(255, 255, 255, 0.55);
 }
 
 .floor-stage {
-  background:
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(15, 23, 42, 0.35) 18%,
-      rgba(2, 6, 23, 0.92) 100%
-    );
+  background: linear-gradient(180deg, transparent 0%, rgba(250, 249, 246, 0.6) 100%);
   perspective: 900px;
 }
 
@@ -95,42 +83,34 @@ body {
   transform: rotateX(72deg) scale(1.35);
   transform-origin: top center;
   background-image:
-    linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
-    linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px);
   background-size: 72px 72px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent 88%);
 }
 
 .floor-strip {
   background: linear-gradient(
     180deg,
-    rgba(224, 242, 254, 0.95) 0%,
-    rgba(34, 211, 238, 0.55) 38%,
-    rgba(14, 165, 233, 0.08) 100%
+    rgba(15, 23, 42, 0.08) 0%,
+    rgba(0, 112, 243, 0.12) 38%,
+    transparent 100%
   );
-  box-shadow:
-    0 0 24px 6px rgba(186, 230, 253, 0.45),
-    0 0 80px 20px rgba(34, 211, 238, 0.2);
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="time"]::-webkit-calendar-picker-indicator {
-  filter: invert(1) opacity(0.7);
   cursor: pointer;
+  opacity: 0.7;
 }
 
 .glass-panel {
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.72) 0%,
-    rgba(5, 5, 5, 0.88) 100%
-  );
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(226, 232, 240, 0.12);
+  border: 1px solid rgba(229, 231, 235, 0.9);
   box-shadow:
-    0 30px 80px -20px rgba(0, 0, 0, 0.75),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 24px 60px -24px rgba(15, 23, 42, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 @layer utilities {
@@ -152,4 +132,3 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   animation: catalog-kenburns 16s ease-in-out infinite alternate;
   will-change: transform;
 }
-

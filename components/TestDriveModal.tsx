@@ -22,7 +22,7 @@ type TestDriveModalProps = {
 };
 
 const fieldClass =
-  "w-full rounded-lg border border-white/10 bg-[#0B0F19] px-4 py-3 text-sm text-vx-metal outline-none transition focus:border-vx-red/60 focus:ring-1 focus:ring-vx-red/40 placeholder:text-vx-silver/40";
+  "w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition focus:border-neutral-400 focus:ring-1 focus:ring-neutral-300 placeholder:text-neutral-400";
 
 export default function TestDriveModal({
   open,
@@ -72,7 +72,7 @@ export default function TestDriveModal({
           <button
             type="button"
             aria-label="Close appointment modal"
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-neutral-900/40 backdrop-blur-sm"
             onClick={onClose}
           />
 
@@ -88,12 +88,12 @@ export default function TestDriveModal({
           >
             <div className="mb-6 flex items-start justify-between gap-4">
               <div>
-                <p className="font-display text-[10px] tracking-[0.35em] text-vx-red">
+                <p className="font-display text-[10px] tracking-[0.35em] text-neutral-500">
                   PRIVATE ATELIER
                 </p>
                 <h2
                   id="appointment-title"
-                  className="mt-2 font-display text-xl font-bold tracking-[0.12em] text-white sm:text-2xl"
+                  className="mt-2 font-display text-xl font-bold tracking-[0.12em] text-neutral-900 sm:text-2xl"
                 >
                   TEST DRIVE APPOINTMENT
                 </h2>
@@ -101,7 +101,7 @@ export default function TestDriveModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-md p-1.5 text-vx-silver transition hover:bg-white/5 hover:text-white"
+                className="rounded-md p-1.5 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-900"
                 aria-label="Close"
               >
                 <X size={18} />
@@ -110,13 +110,13 @@ export default function TestDriveModal({
 
             {submitted ? (
               <div className="py-8 text-center">
-                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-vx-red/40 bg-vx-red/10 text-vx-red">
+                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-neutral-200 bg-neutral-50 text-neutral-900">
                   <Car size={22} />
                 </div>
-                <p className="font-display text-lg tracking-[0.14em] text-white">
+                <p className="font-display text-lg tracking-[0.14em] text-neutral-900">
                   REQUEST RECEIVED
                 </p>
-                <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-vx-silver">
+                <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-neutral-600">
                   A VELORIX concierge will confirm your showroom appointment
                   shortly. Drive beyond.
                 </p>
@@ -133,14 +133,14 @@ export default function TestDriveModal({
                 className="space-y-4"
               >
                 <label className="block">
-                  <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-vx-silver">
+                  <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-neutral-500">
                     <Car size={13} /> Model
                   </span>
                   <select
                     name="model"
                     required
                     defaultValue={prefillModel ?? ""}
-                    className={`${fieldClass} bg-[#0B0F19]`}
+                    className={`${fieldClass}`}
                   >
                     <option value="" disabled>
                       Select a model
@@ -155,13 +155,13 @@ export default function TestDriveModal({
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <label className="block">
-                    <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-vx-silver">
+                    <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-neutral-500">
                       <CalendarClock size={13} /> Date
                     </span>
                     <input name="date" type="date" required className={fieldClass} />
                   </label>
                   <label className="block">
-                    <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-vx-silver">
+                    <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-neutral-500">
                       <CalendarClock size={13} /> Time
                     </span>
                     <input name="time" type="time" required className={fieldClass} />
@@ -169,7 +169,7 @@ export default function TestDriveModal({
                 </div>
 
                 <label className="block">
-                  <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-vx-silver">
+                  <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-neutral-500">
                     <MapPin size={13} /> Preferred showroom
                   </span>
                   <select
@@ -190,7 +190,7 @@ export default function TestDriveModal({
                 </label>
 
                 <label className="block">
-                  <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-vx-silver">
+                  <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-neutral-500">
                     <User size={13} /> Full name
                   </span>
                   <input
@@ -203,7 +203,7 @@ export default function TestDriveModal({
                 </label>
 
                 <label className="block">
-                  <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-vx-silver">
+                  <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-neutral-500">
                     <Phone size={13} /> Phone
                   </span>
                   <input
@@ -216,7 +216,7 @@ export default function TestDriveModal({
                 </label>
 
                 <label className="block">
-                  <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-vx-silver">
+                  <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-neutral-500">
                     <Hash size={13} /> Serial / Car ID
                   </span>
                   <input

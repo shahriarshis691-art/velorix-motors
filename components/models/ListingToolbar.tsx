@@ -8,7 +8,7 @@ import {
 } from "@/lib/cars";
 
 const selectClass =
-  "h-11 w-full rounded-lg border border-white/10 bg-[#0B0F19] px-3 text-xs uppercase tracking-[0.12em] text-vx-metal outline-none transition focus:border-vx-red/60 focus:ring-1 focus:ring-vx-red/40";
+  "h-11 w-full rounded-lg border border-neutral-200 bg-white px-3 text-xs uppercase tracking-[0.12em] text-neutral-800 outline-none transition focus:border-neutral-400 focus:ring-1 focus:ring-neutral-300";
 
 type ListingToolbarProps = {
   filters: VehicleFilters;
@@ -29,19 +29,19 @@ export default function ListingToolbar({
     onChange({ ...filters, [key]: value });
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-[#0a0a0a]/80 p-4 shadow-[0_0_0_1px_rgba(34,211,238,0.08)] backdrop-blur-md sm:p-5">
+    <div className="rounded-2xl border border-neutral-200 bg-white/80 p-4 shadow-sm backdrop-blur-md sm:p-5">
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-6">
         <label className="relative xl:col-span-2">
           <Search
             size={14}
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-vx-silver/70"
+            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"
           />
           <input
             type="search"
             value={filters.query}
             onChange={(e) => set("query", e.target.value)}
             placeholder="Search by model name"
-            className="h-11 w-full rounded-lg border border-white/10 bg-[#0B0F19] pl-9 pr-3 text-sm text-vx-metal outline-none placeholder:text-vx-silver/40 focus:border-vx-red/60 focus:ring-1 focus:ring-vx-red/40"
+            className="h-11 w-full rounded-lg border border-neutral-200 bg-white pl-9 pr-3 text-sm text-neutral-900 outline-none placeholder:text-neutral-400 focus:border-neutral-400 focus:ring-1 focus:ring-neutral-300"
           />
         </label>
 
@@ -102,7 +102,7 @@ export default function ListingToolbar({
       </div>
 
       <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-[11px] uppercase tracking-[0.18em] text-vx-silver/60">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-neutral-500">
           Auction-grade reconditioned stock
         </p>
         <select

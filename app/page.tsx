@@ -12,7 +12,7 @@ export default function HomePage() {
   const [appointmentOpen, setAppointmentOpen] = useState(false);
 
   return (
-    <main className="min-h-screen bg-vx-black">
+    <main className="min-h-screen bg-[#faf9f6]">
       <Navbar onBookAppointment={() => setAppointmentOpen(true)} />
       <Hero
         onViewCollections={() => {

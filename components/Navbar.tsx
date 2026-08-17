@@ -15,7 +15,7 @@ const NAV_LINKS = [
 ] as const;
 
 const mobileLinkClassName =
-  "border-b border-white/5 py-2 text-base font-semibold uppercase tracking-widest text-neutral-200 transition-colors hover:text-white";
+  "border-b border-neutral-100 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-900 transition-colors hover:text-black";
 
 type NavbarProps = {
   onBookAppointment: () => void;
@@ -62,7 +62,7 @@ export default function Navbar({ onBookAppointment }: NavbarProps) {
 
   return (
     <>
-      <header className="fixed top-0 left-0 z-[100] w-full border-b border-white/10 bg-black/60 backdrop-blur-md">
+      <header className="fixed inset-x-0 top-0 z-[100] w-full border-b border-neutral-200/80 bg-white/85 shadow-sm backdrop-blur-xl">
         <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-[72px] sm:px-8">
           <Link
             href="/"
@@ -73,13 +73,13 @@ export default function Navbar({ onBookAppointment }: NavbarProps) {
             <VelorixLogo size="sm" />
           </Link>
 
-          <nav className="hidden items-center gap-10 md:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-8 lg:gap-10 md:flex" aria-label="Primary">
             {NAV_LINKS.map((link) => (
               <button
                 key={link.href}
                 type="button"
                 onClick={() => goToSection(link.href, link.hash)}
-                className="font-display text-[11px] font-medium uppercase tracking-[0.2em] text-[#94A3B8] transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_10px_rgba(226,232,240,0.55)]"
+                className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-600 transition-colors duration-300 hover:text-neutral-900"
               >
                 {link.label}
               </button>
@@ -88,7 +88,7 @@ export default function Navbar({ onBookAppointment }: NavbarProps) {
 
           <button
             type="button"
-            className="relative z-[101] flex rounded-lg p-2 text-white transition-all hover:bg-white/10 md:hidden"
+            className="relative z-[101] flex rounded-lg p-2 text-neutral-900 transition-all hover:bg-neutral-100 md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
@@ -112,7 +112,7 @@ export default function Navbar({ onBookAppointment }: NavbarProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-0 top-16 z-[999] flex flex-col gap-5 border-b border-white/10 bg-[#050505]/95 px-6 py-8 shadow-2xl backdrop-blur-2xl sm:top-[72px] md:hidden"
+            className="fixed inset-x-0 top-16 z-[999] flex flex-col gap-1 border-b border-neutral-200 bg-white/95 px-6 py-6 shadow-xl backdrop-blur-2xl sm:top-[72px] md:hidden"
           >
             <Link
               href="/#collections"
@@ -142,11 +142,11 @@ export default function Navbar({ onBookAppointment }: NavbarProps) {
             >
               ABOUT
             </Link>
-            <div className="flex flex-col gap-3 pt-2">
+            <div className="flex flex-col gap-3 pt-4">
               <button
                 type="button"
                 onClick={() => goToSection("/#pre-order", "#pre-order")}
-                className="w-full rounded-full bg-[#0088ff] py-3 text-center text-sm font-semibold text-white transition-all hover:bg-[#0077ee]"
+                className="w-full rounded-full bg-[#0a0a0a] py-3.5 text-center text-sm font-semibold text-white transition-all hover:bg-neutral-800"
               >
                 Book Pre-Order
               </button>

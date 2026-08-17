@@ -46,7 +46,7 @@ export default function VehicleDetailsModal({
           <button
             type="button"
             aria-label="Close details"
-            className="absolute inset-0 bg-black/75 backdrop-blur-sm"
+            className="absolute inset-0 bg-neutral-900/40 backdrop-blur-sm"
             onClick={onClose}
           />
           <motion.div
@@ -56,9 +56,9 @@ export default function VehicleDetailsModal({
             initial={{ opacity: 0, y: 24, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
-            className="glass-panel relative z-10 grid max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl md:grid-cols-2"
+            className="glass-panel relative z-10 grid max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl bg-white md:grid-cols-2"
           >
-            <div className="flex min-h-[260px] flex-col bg-black md:min-h-full">
+            <div className="flex min-h-[260px] flex-col bg-neutral-100 md:min-h-full">
               <div className="relative aspect-[16/10] w-full md:flex-1 md:aspect-auto">
                 <Image
                   src={active || car.media.main}
@@ -67,11 +67,11 @@ export default function VehicleDetailsModal({
                   className="object-cover object-center"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <span className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-black/60 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-white/90 backdrop-blur-md">
+                <span className="absolute bottom-3 left-3 rounded-full border border-neutral-200 bg-white/90 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-neutral-800 backdrop-blur-md">
                   {activeLabel}
                 </span>
               </div>
-              <div className="grid grid-cols-4 gap-[3px] bg-black p-[3px] sm:grid-cols-5">
+              <div className="grid grid-cols-4 gap-px bg-neutral-200 p-px sm:grid-cols-5">
                 {photos.map((src) => {
                   const selected = src === active;
                   const thumbLabel =
@@ -91,7 +91,7 @@ export default function VehicleDetailsModal({
                       aria-pressed={selected}
                       className={`relative aspect-[16/10] overflow-hidden ${
                         selected
-                          ? "ring-2 ring-white"
+                          ? "ring-2 ring-neutral-900"
                           : "opacity-80 hover:opacity-100"
                       }`}
                     >
@@ -110,7 +110,7 @@ export default function VehicleDetailsModal({
             <div className="p-6 sm:p-7">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="font-display text-[10px] tracking-[0.3em] text-vx-red">
+                  <p className="font-display text-[10px] tracking-[0.3em] text-neutral-500">
                     {car.year} · GRADE {car.grade.toFixed(1)}
                   </p>
                   <h2 className="mt-2 font-display text-xl font-bold uppercase tracking-[0.12em]">
@@ -120,17 +120,17 @@ export default function VehicleDetailsModal({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="rounded-md p-1.5 text-vx-silver hover:bg-white/5 hover:text-white"
+                  className="rounded-md p-1.5 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900"
                   aria-label="Close"
                 >
                   <X size={18} />
                 </button>
               </div>
 
-              <p className="mt-4 font-display text-2xl font-bold text-white">
+              <p className="mt-4 font-display text-2xl font-bold text-neutral-900">
                 {car.price}
               </p>
-              <p className="mt-1 text-xs uppercase tracking-[0.16em] text-vx-silver/70">
+              <p className="mt-1 text-xs uppercase tracking-[0.16em] text-neutral-500">
                 {statusLabel(car.status)} · {car.packageName} · {car.exteriorColor}
               </p>
 
@@ -147,7 +147,7 @@ export default function VehicleDetailsModal({
                 <button
                   type="button"
                   onClick={() => onBook(car)}
-                  className="w-full rounded-xl bg-[#0088ff] px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#0077ee]"
+                  className="min-h-11 w-full rounded-full bg-[#0a0a0a] px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-neutral-800"
                 >
                   Pre-Order
                 </button>
@@ -162,11 +162,11 @@ export default function VehicleDetailsModal({
 
 function Detail({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2">
-      <dt className="text-[10px] uppercase tracking-[0.16em] text-vx-silver/60">
+    <div className="rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2">
+      <dt className="text-[10px] uppercase tracking-[0.16em] text-neutral-500">
         {label}
       </dt>
-      <dd className="mt-1 text-vx-metal">{value}</dd>
+      <dd className="mt-1 text-neutral-800">{value}</dd>
     </div>
   );
 }

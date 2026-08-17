@@ -9,14 +9,16 @@ const config: Config = {
     extend: {
       colors: {
         vx: {
-          black: "#050505",
-          slate: "#0B0F19",
-          red: "#EF4444",
-          cyan: "#22D3EE",
-          ice: "#67E8F9",
-          silver: "#94A3B8",
-          metal: "#E2E8F0",
-          ink: "#0F172A",
+          black: "#0f172a",
+          slate: "#111111",
+          red: "#0070f3",
+          cyan: "#0070f3",
+          ice: "#e8eef6",
+          silver: "#64748b",
+          metal: "#334155",
+          ink: "#0f172a",
+          cream: "#faf9f6",
+          ivory: "#fcfcfc",
         },
       },
       fontFamily: {
@@ -28,17 +30,17 @@ const config: Config = {
         brand: "0.28em",
       },
       boxShadow: {
-        "red-glow": "0 10px 25px -5px rgba(239, 68, 68, 0.4)",
-        "red-glow-lg": "0 14px 40px -6px rgba(239, 68, 68, 0.55)",
-        "cyan-pillar": "0 0 40px 8px rgba(34, 211, 238, 0.35)",
+        "red-glow": "0 10px 25px -8px rgba(15, 23, 42, 0.18)",
+        "red-glow-lg": "0 14px 40px -8px rgba(15, 23, 42, 0.22)",
+        "cyan-pillar": "0 8px 30px -10px rgba(0, 112, 243, 0.25)",
       },
       backgroundImage: {
         metal:
-          "linear-gradient(180deg, #E2E8F0 0%, #94A3B8 50%, #475569 100%)",
+          "linear-gradient(180deg, #1a1a1a 0%, #111111 50%, #0a0a0a 100%)",
         "metal-hover":
-          "linear-gradient(180deg, #F8FAFC 0%, #CBD5E1 48%, #64748B 100%)",
+          "linear-gradient(180deg, #2a2a2a 0%, #171717 48%, #0a0a0a 100%)",
         showroom:
-          "linear-gradient(180deg, #050505 0%, #0B0F19 48%, #050505 100%)",
+          "linear-gradient(180deg, #ffffff 0%, #faf9f6 48%, #fcfcfc 100%)",
       },
     },
   },

@@ -108,16 +108,16 @@ export function VelorixWordmark({
           <span className="metallic-text">X</span>
           <span
             aria-hidden
-            className="absolute left-[46%] top-[6%] h-[88%] w-[2.5px] -translate-x-1/2 rotate-[-32deg] rounded-full bg-vx-red shadow-[0_0_10px_#ef4444]"
+            className="absolute left-[46%] top-[6%] h-[88%] w-[2.5px] -translate-x-1/2 rotate-[-32deg] rounded-full bg-neutral-900"
           />
         </span>
       </span>
       <span
-        className={`mt-1 flex items-center gap-2 font-display font-medium uppercase tracking-[0.42em] text-vx-silver/80 ${s.motors}`}
+        className={`mt-1 flex items-center gap-2 font-display font-medium uppercase tracking-[0.42em] text-neutral-500 ${s.motors}`}
       >
-        <span className="h-px w-4 bg-vx-silver/40" />
+        <span className="h-px w-4 bg-neutral-300" />
         Motors
-        <span className="h-px w-4 bg-vx-silver/40" />
+        <span className="h-px w-4 bg-neutral-300" />
       </span>
     </div>
   );

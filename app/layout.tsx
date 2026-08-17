@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: "#050505",
+  themeColor: "#faf9f6",
 };
 
 export default function RootLayout({
@@ -31,9 +31,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
-        className={`${inter.variable} ${orbitron.variable} font-sans bg-vx-black text-vx-metal antialiased`}
+        className={`${inter.variable} ${orbitron.variable} font-sans bg-[#faf9f6] text-neutral-900 antialiased`}
       >
         {children}
       </body>

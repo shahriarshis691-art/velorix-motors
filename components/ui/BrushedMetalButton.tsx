@@ -21,7 +21,7 @@ export default function BrushedMetalButton({
       whileHover={{ y: -3, scale: 1.015 }}
       whileTap={{ y: 1, scale: 0.985 }}
       transition={{ type: "spring", stiffness: 420, damping: 24 }}
-      className={`group relative isolate overflow-hidden rounded-xl px-6 py-4 font-display text-[11px] font-bold uppercase tracking-[0.18em] text-vx-ink shadow-red-glow transition-shadow duration-300 hover:shadow-red-glow-lg sm:text-xs ${className}`}
+      className={`group relative isolate overflow-hidden rounded-full px-6 py-4 font-display text-[11px] font-bold uppercase tracking-[0.18em] text-white shadow-sm transition-shadow duration-300 hover:shadow-md sm:text-xs ${className}`}
       {...props}
     >
       <span
@@ -44,7 +44,7 @@ export default function BrushedMetalButton({
         aria-hidden
         className="pointer-events-none absolute inset-x-4 bottom-0 h-px bg-black/30"
       />
-      <span className="relative z-10 block leading-tight drop-shadow-[0_1px_0_rgba(255,255,255,0.35)]">
+      <span className="relative z-10 block leading-tight">
         {children}
       </span>
     </motion.button>
