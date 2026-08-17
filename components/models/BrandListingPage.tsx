@@ -1,12 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import ListingHero from "@/components/ListingHero";
 import TestDriveModal from "@/components/TestDriveModal";
-import BrandEmblem from "@/components/models/BrandEmblem";
 import ListingToolbar from "@/components/models/ListingToolbar";
 import VehicleCard from "@/components/models/VehicleCard";
 import VehicleDetailsModal from "@/components/models/VehicleDetailsModal";
@@ -56,12 +55,17 @@ export default function BrandListingPage({ brand, cars }: BrandListingPageProps)
   };
 
   return (
-    <main className="min-h-screen bg-[#050505]">
+    <main className="relative min-h-screen bg-[#050505]">
       <Navbar onBookAppointment={() => openTestDrive()} />
 
-      <section className="relative overflow-hidden px-4 pb-20 pt-28 sm:px-6 lg:px-8">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(34,211,238,0.08),_transparent_42%)]" />
+      <div className="sticky top-0 z-0 h-screen min-h-[100dvh]">
+        <ListingHero brand={brand} />
+      </div>
 
+      <section
+        id="inventory"
+        className="relative z-10 min-h-screen bg-[#050505] px-4 pb-20 pt-12 sm:px-6 lg:px-8"
+      >
         <div className="relative mx-auto max-w-7xl">
           <nav
             aria-label="Breadcrumb"
@@ -77,44 +81,6 @@ export default function BrandListingPage({ brand, cars }: BrandListingPageProps)
             <ChevronRight size={12} />
             <span className="text-white">{brand.displayName}</span>
           </nav>
-
-          <div className="relative mb-10 overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0a] shadow-[0_0_0_1px_rgba(34,211,238,0.1),0_0_40px_rgba(34,211,238,0.06)]">
-            <div className="grid items-stretch md:grid-cols-[1.2fr_0.8fr]">
-              <div className="p-6 sm:p-8 lg:p-10">
-                <div className="flex flex-wrap items-center gap-4">
-                  <BrandEmblem slug={brand.slug} />
-                  <div>
-                    <p className="font-display text-[10px] tracking-[0.35em] text-vx-red">
-                      AUCTION ATELIER
-                    </p>
-                    <h1 className="mt-1 font-display text-3xl font-bold tracking-[0.16em] sm:text-5xl">
-                      <span className="metallic-text">{brand.displayName}</span>
-                    </h1>
-                  </div>
-                </div>
-                <p className="mt-5 max-w-xl text-sm leading-relaxed text-vx-silver/80">
-                  {brand.tagline}
-                </p>
-                <Link
-                  href="/"
-                  className="mt-8 inline-flex items-center gap-2 rounded-lg border border-white/15 px-4 py-2.5 font-display text-[11px] uppercase tracking-[0.18em] text-white transition hover:border-cyan-300/40 hover:bg-white/5"
-                >
-                  <ArrowLeft size={14} /> Back to Home
-                </Link>
-              </div>
-              <div className="relative min-h-[200px] border-t border-white/10 md:border-l md:border-t-0">
-                <Image
-                  src={brand.image}
-                  alt={`${brand.name} atelier`}
-                  fill
-                  priority
-                  className="object-cover object-center"
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent md:from-[#0a0a0a]/80" />
-              </div>
-            </div>
-          </div>
 
           <ListingToolbar
             filters={filters}
