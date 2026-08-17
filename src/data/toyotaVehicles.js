@@ -26,10 +26,10 @@ export const toyotaVehicles = [
     category: "VEHICLES",
     title: "Toyota Camry Hybrid",
     tagline: "Dynamic Sculpting Paired With Hybrid Efficiency",
-    coverImage: "/images/toyota/camry.jpg",
+    coverImage: "/images/toyota-avalon.jpg",
     coverFit: "contain",
     galleryImages: [
-      "/images/toyota/camry-front.jpg",
+      "/images/toyota-avalon.jpg",
       "/images/toyota/camry-interior.jpg",
     ],
     specs: {

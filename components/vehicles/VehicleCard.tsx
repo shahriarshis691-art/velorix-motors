@@ -31,7 +31,13 @@ export default function VehicleCard({
         {vehicle.title}
       </h2>
 
-      <div className="relative mt-3 mb-4 aspect-[16/10] w-full overflow-hidden rounded-none bg-neutral-50">
+      <div
+        className={`relative mt-3 mb-4 aspect-[16/10] w-full overflow-hidden ${
+          "coverFit" in vehicle && vehicle.coverFit === "contain"
+            ? "rounded-xl bg-[#e5e5e5]"
+            : "rounded-none bg-neutral-50"
+        }`}
+      >
         <Image
           src={vehicle.coverImage}
           alt={vehicle.title}
@@ -40,7 +46,7 @@ export default function VehicleCard({
           sizes="(max-width: 768px) 100vw, 768px"
           className={
             "coverFit" in vehicle && vehicle.coverFit === "contain"
-              ? "h-full w-full object-contain object-center p-4"
+              ? "h-full w-full object-contain object-center p-2 sm:p-3"
               : "h-full w-full object-cover object-center"
           }
         />

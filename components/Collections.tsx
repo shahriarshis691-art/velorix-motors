@@ -18,9 +18,10 @@ const CARS = [
     id: "toyota",
     name: "TOYOTA",
     href: "/brands/toyota",
-    image: "/images/toyota-corolla.jpg",
-    alt: "White Toyota Corolla Hybrid sedan on a studio background",
-    objectClass: "object-contain object-center p-3 sm:p-4",
+    image: "/images/toyota-avalon.jpg",
+    alt: "Silver Toyota sedan in a clean studio render, front three-quarter view",
+    objectClass: "object-contain object-center p-2 sm:p-3",
+    cardBg: "bg-[#e5e5e5]",
   },
   {
     id: "bmw",
@@ -103,7 +104,7 @@ function CatalogPanel({
     >
       <Link
         href={car.href}
-        className="group relative isolate block aspect-[16/10] w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition duration-500 hover:shadow-md"
+        className={`group relative isolate block aspect-[16/10] w-full overflow-hidden rounded-2xl border border-neutral-200 shadow-sm transition duration-500 hover:shadow-md ${"cardBg" in car ? car.cardBg : "bg-white"}`}
         aria-label={`View ${car.name} models`}
       >
         <Image
