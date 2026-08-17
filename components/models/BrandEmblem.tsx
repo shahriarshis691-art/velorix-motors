@@ -25,5 +25,6 @@ function initials(slug: BrandSlug) {
   if (slug === "bmw") return "BMW";
   if (slug === "nissan") return "N";
   if (slug === "toyota") return "T";
+  if (slug === "allion") return "A";
   return "H";
 }

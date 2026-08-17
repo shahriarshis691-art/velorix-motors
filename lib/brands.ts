@@ -4,6 +4,7 @@ export const BRAND_SLUGS = [
   "nissan",
   "toyota",
   "honda",
+  "allion",
 ] as const;
 
 export type BrandSlug = (typeof BRAND_SLUGS)[number];
@@ -57,6 +58,14 @@ export const BRANDS: BrandMeta[] = [
     tagline: "Civic Type R, CR-V and Accord hybrids ready for atelier viewing.",
     image: "/images/honda-civic.png",
     accent: "#E40521",
+  },
+  {
+    slug: "allion",
+    name: "Toyota Allion",
+    displayName: "ALLION",
+    tagline: "Japan-auction Allion sedans, A15 and A18 grades ready for delivery.",
+    image: "/images/toyota-allion.png",
+    accent: "#EB0A1E",
   },
 ];
 

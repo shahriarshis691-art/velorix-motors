@@ -43,6 +43,13 @@ const CARS: CatalogCar[] = [
     alt: "Platinum-grey Honda CR-V aggressive fascia, LED light bar and Honda emblem",
     mode: "arrow",
   },
+  {
+    id: "allion",
+    name: "ALLION",
+    image: "/images/toyota-allion.png",
+    alt: "Pearl-white Toyota Allion sedan LED projector headlight, chrome grille and bonnet",
+    mode: "zoom",
+  },
 ];
 
 type CollectionsProps = {
@@ -66,11 +73,11 @@ export default function Collections({ onBookAppointment }: CollectionsProps) {
             </h2>
           </div>
           <p className="hidden max-w-sm text-right text-xs leading-relaxed text-vx-silver/70 sm:block">
-            Five signatures. Open a brand to inspect re-conditioned stock.
+            Six signatures. Open a marque to inspect re-conditioned stock.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5 lg:grid-cols-3 xl:grid-cols-6">
           {CARS.map((car, i) => (
             <CatalogPanel key={car.id} car={car} index={i} />
           ))}
@@ -102,7 +109,7 @@ function CatalogPanel({ car, index }: { car: CatalogCar; index: number }) {
           src={car.image}
           alt={car.alt}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 16vw"
           className="object-cover object-[center_18%] transition-transform duration-700 ease-out group-hover:scale-[1.045]"
           priority={index < 3}
         />
