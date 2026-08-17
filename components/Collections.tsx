@@ -20,8 +20,7 @@ const CARS = [
     href: "/brands/toyota",
     image: "/images/toyota-avalon.jpg",
     alt: "Silver Toyota sedan in a clean studio render, front three-quarter view",
-    objectClass: "object-contain object-center p-2 sm:p-3",
-    cardBg: "bg-[#e5e5e5]",
+    objectClass: "object-cover object-center",
   },
   {
     id: "bmw",
@@ -104,7 +103,7 @@ function CatalogPanel({
     >
       <Link
         href={car.href}
-        className={`group relative isolate block aspect-[16/10] w-full overflow-hidden rounded-2xl border border-neutral-200 shadow-sm transition duration-500 hover:shadow-md ${"cardBg" in car ? car.cardBg : "bg-white"}`}
+        className="group relative isolate block aspect-[16/10] w-full overflow-hidden rounded-2xl bg-neutral-100 shadow-sm transition duration-500 hover:shadow-md"
         aria-label={`View ${car.name} models`}
       >
         <Image
@@ -116,11 +115,9 @@ function CatalogPanel({
           priority={index < 2}
         />
 
-        {!car.objectClass.includes("object-contain") && (
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white via-white/40 to-transparent" />
-        )}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
-        <span className="absolute bottom-4 left-5 z-10 font-display text-[11px] font-semibold uppercase tracking-[0.35em] text-neutral-900 sm:text-xs">
+        <span className="absolute bottom-4 left-4 z-10 font-display text-[11px] font-semibold uppercase tracking-[0.35em] text-white sm:text-xs">
           {car.name}
         </span>
       </Link>
