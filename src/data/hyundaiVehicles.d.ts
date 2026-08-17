@@ -9,11 +9,13 @@ export type HyundaiVehicle = {
   galleryImages: string[];
   specs: {
     power: string;
-    acceleration: string;
-    topSpeed: string;
+    acceleration?: string;
+    topSpeed?: string;
     engine: string;
-    drivetrain: string;
+    transmission?: string;
+    drivetrain?: string;
   };
+  highlights?: string[];
   price: string;
 };
 
