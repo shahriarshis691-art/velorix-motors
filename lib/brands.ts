@@ -38,8 +38,8 @@ export const BRANDS: BrandMeta[] = [
     slug: "toyota",
     name: "Toyota",
     displayName: "TOYOTA",
-    tagline: "Harrier, Crown and Land Cruiser lots graded 4.0 and above.",
-    image: "/images/toyota-harrier.png",
+    tagline: "Harrier, Crown, RAV4, Allion, Premio, Prado and Noah from Japan auctions.",
+    image: "/images/toyota-harrier-z-coast.png",
     accent: "#EB0A1E",
   },
   {
