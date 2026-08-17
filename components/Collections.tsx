@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Eye, Play, Search } from "lucide-react";
-import CatalogViewer from "@/components/CatalogViewer";
 import ConciergeFab from "@/components/ConciergeFab";
 import type { CatalogCar } from "@/components/catalog";
 
@@ -51,8 +50,6 @@ type CollectionsProps = {
 };
 
 export default function Collections({ onBookAppointment }: CollectionsProps) {
-  const [active, setActive] = useState<CatalogCar | null>(null);
-
   return (
     <section
       id="collections"
@@ -69,77 +66,65 @@ export default function Collections({ onBookAppointment }: CollectionsProps) {
             </h2>
           </div>
           <p className="hidden max-w-sm text-right text-xs leading-relaxed text-vx-silver/70 sm:block">
-            Five signatures. Inspect, orbit, play, view, or traverse.
+            Five signatures. Open a brand to inspect re-conditioned stock.
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5 lg:grid-cols-5">
           {CARS.map((car, i) => (
-            <CatalogPanel
-              key={car.id}
-              car={car}
-              index={i}
-              onOpen={() => setActive(car)}
-            />
+            <CatalogPanel key={car.id} car={car} index={i} />
           ))}
         </div>
       </div>
 
       <ConciergeFab
-        onBookAppointment={onBookAppointment ?? (() => setActive(CARS[0]))}
+        onBookAppointment={onBookAppointment ?? (() => undefined)}
       />
-      <CatalogViewer car={active} onClose={() => setActive(null)} />
     </section>
   );
 }
 
-function CatalogPanel({
-  car,
-  index,
-  onOpen,
-}: {
-  car: CatalogCar;
-  index: number;
-  onOpen: () => void;
-}) {
+function CatalogPanel({ car, index }: { car: CatalogCar; index: number }) {
   return (
-    <motion.button
-      type="button"
-      onClick={onOpen}
+    <motion.div
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ delay: index * 0.07, duration: 0.55 }}
       whileHover={{ y: -4 }}
-      className="group relative isolate aspect-[3/4] w-full overflow-hidden border border-white/[0.12] bg-white text-left"
-      aria-label={`Open ${car.name} ${car.mode} view`}
     >
-      <Image
-        src={car.image}
-        alt={car.alt}
-        fill
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
-        className="object-cover object-[center_18%] transition-transform duration-700 ease-out group-hover:scale-[1.045]"
-        priority={index < 3}
-      />
+      <Link
+        href={`/models/${car.id}`}
+        className="group relative isolate flex aspect-[3/4] w-full overflow-hidden border border-white/[0.12] bg-white text-left"
+        aria-label={`View ${car.name} models`}
+      >
+        <Image
+          src={car.image}
+          alt={car.alt}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+          className="object-cover object-[center_18%] transition-transform duration-700 ease-out group-hover:scale-[1.045]"
+          priority={index < 3}
+        />
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black via-black/80 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black via-black/80 to-transparent" />
 
-      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-3 pb-6 pt-16">
-        <span className="mb-3 flex h-8 w-8 items-center justify-center text-white/85 opacity-80 transition group-hover:opacity-100">
-          {car.mode === "zoom" && <Search size={16} strokeWidth={1.75} />}
-          {car.mode === "rotate" && <Icon360 />}
-          {car.mode === "play" && (
-            <Play size={15} strokeWidth={1.75} fill="currentColor" />
-          )}
-          {car.mode === "view" && <Eye size={16} strokeWidth={1.75} />}
-          {car.mode === "arrow" && <ArrowUpRight size={16} strokeWidth={1.75} />}
-        </span>
-        <span className="metallic-text font-display text-[15px] font-bold uppercase tracking-[0.28em] sm:text-base lg:text-[15px] xl:text-lg">
-          {car.name}
-        </span>
-      </div>
-    </motion.button>
+        <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-3 pb-6 pt-16">
+          <span className="mb-3 flex h-8 w-8 items-center justify-center text-white/85 opacity-80 transition group-hover:opacity-100">
+            {car.mode === "zoom" && <Search size={16} strokeWidth={1.75} />}
+            {car.mode === "rotate" && <Icon360 />}
+            {car.mode === "play" && (
+              <Play size={15} strokeWidth={1.75} fill="currentColor" />
+            )}
+            {car.mode === "view" && <Eye size={16} strokeWidth={1.75} />}
+            {car.mode === "arrow" && <ArrowUpRight size={16} strokeWidth={1.75} />}
+          </span>
+          <span className="metallic-text font-display text-[15px] font-bold uppercase tracking-[0.28em] sm:text-base lg:text-[15px] xl:text-lg">
+            {car.name}
+          </span>
+        </div>
+      </Link>
+    </motion.div>
   );
 }
 

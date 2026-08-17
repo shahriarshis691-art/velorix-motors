@@ -1,37 +1,43 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CalendarClock, Car, Hash, MapPin, Phone, User, X } from "lucide-react";
 import BrushedMetalButton from "@/components/ui/BrushedMetalButton";
-
-const MODELS = [
-  "Land Rover Defender 90",
-  "BMW iX",
-  "Nissan Z",
-  "VX-1 Apex",
-  "VX-S Coupe",
-  "VX-GT Touring",
-];
+import { getModelSelectOptions } from "@/lib/cars";
 
 const SHOWROOMS = [
+  "Dhaka — Gulshan Atelier",
+  "Dhaka — Banani Pavilion",
+  "Chattogram — Agrabad Gallery",
   "Dubai — Al Quoz Atelier",
-  "Monaco — Port Hercules",
   "London — Mayfair Pavilion",
-  "New York — Hudson Motors",
-  "Tokyo — Ginza Gallery",
 ];
 
 type TestDriveModalProps = {
   open: boolean;
   onClose: () => void;
+  prefillModel?: string;
+  prefillSerial?: string;
 };
 
 const fieldClass =
   "w-full rounded-lg border border-white/10 bg-[#0B0F19] px-4 py-3 text-sm text-vx-metal outline-none transition focus:border-vx-red/60 focus:ring-1 focus:ring-vx-red/40 placeholder:text-vx-silver/40";
 
-export default function TestDriveModal({ open, onClose }: TestDriveModalProps) {
+export default function TestDriveModal({
+  open,
+  onClose,
+  prefillModel,
+  prefillSerial,
+}: TestDriveModalProps) {
   const [submitted, setSubmitted] = useState(false);
+  const models = useMemo(() => {
+    const options = getModelSelectOptions();
+    if (prefillModel && !options.includes(prefillModel)) {
+      return [prefillModel, ...options];
+    }
+    return options;
+  }, [prefillModel]);
 
   useEffect(() => {
     if (!open) {
@@ -121,7 +127,11 @@ export default function TestDriveModal({ open, onClose }: TestDriveModalProps) {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form
+                key={`${prefillModel ?? "none"}-${prefillSerial ?? "none"}`}
+                onSubmit={handleSubmit}
+                className="space-y-4"
+              >
                 <label className="block">
                   <span className="mb-1.5 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-vx-silver">
                     <Car size={13} /> Model
@@ -129,13 +139,13 @@ export default function TestDriveModal({ open, onClose }: TestDriveModalProps) {
                   <select
                     name="model"
                     required
-                    defaultValue=""
+                    defaultValue={prefillModel ?? ""}
                     className={`${fieldClass} bg-[#0B0F19]`}
                   >
                     <option value="" disabled>
                       Select a model
                     </option>
-                    {MODELS.map((m) => (
+                    {models.map((m) => (
                       <option key={m} value={m}>
                         {m}
                       </option>
@@ -212,6 +222,7 @@ export default function TestDriveModal({ open, onClose }: TestDriveModalProps) {
                   <input
                     name="serial"
                     type="text"
+                    defaultValue={prefillSerial ?? ""}
                     placeholder="Optional — VX-0000"
                     className={fieldClass}
                   />

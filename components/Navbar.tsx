@@ -1,15 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import VelorixLogo from "@/components/ui/VelorixLogo";
 
 const NAV_LINKS = [
-  { href: "#collections", label: "MODELS" },
-  { href: "#pre-order", label: "PRE-ORDER" },
-  { href: "#services", label: "SERVICES" },
-  { href: "#about", label: "ABOUT" },
+  { href: "/#collections", hash: "#collections", label: "MODELS" },
+  { href: "/#pre-order", hash: "#pre-order", label: "PRE-ORDER" },
+  { href: "/#services", hash: "#services", label: "SERVICES" },
+  { href: "/#about", hash: "#about", label: "ABOUT" },
 ] as const;
 
 type NavbarProps = {
@@ -19,6 +21,8 @@ type NavbarProps = {
 export default function Navbar({ onBookAppointment }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -34,13 +38,17 @@ export default function Navbar({ onBookAppointment }: NavbarProps) {
     };
   }, [open]);
 
-  const handleNav = (href: string) => {
+  const handleNav = (href: string, hash: string) => {
     setOpen(false);
-    if (href === "#pre-order") {
+    if (hash === "#pre-order") {
       onBookAppointment();
       return;
     }
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    if (pathname === "/") {
+      document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    router.push(href);
   };
 
   return (
@@ -50,16 +58,16 @@ export default function Navbar({ onBookAppointment }: NavbarProps) {
       }`}
     >
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" className="relative z-10" aria-label="VELORIX MOTORS home">
+        <Link href="/" className="relative z-10" aria-label="VELORIX MOTORS home">
           <VelorixLogo size="sm" />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-10 md:flex" aria-label="Primary">
           {NAV_LINKS.map((link) => (
             <button
               key={link.href}
               type="button"
-              onClick={() => handleNav(link.href)}
+              onClick={() => handleNav(link.href, link.hash)}
               className="font-display text-[11px] font-medium uppercase tracking-[0.2em] text-[#94A3B8] transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_10px_rgba(226,232,240,0.55)]"
             >
               {link.label}
@@ -106,7 +114,7 @@ export default function Navbar({ onBookAppointment }: NavbarProps) {
                     initial={{ opacity: 0, x: 24 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.08 * i }}
-                    onClick={() => handleNav(link.href)}
+                    onClick={() => handleNav(link.href, link.hash)}
                     className="text-left font-display text-lg font-semibold uppercase tracking-[0.22em] text-[#94A3B8] transition-colors hover:text-white"
                   >
                     {link.label}
