@@ -8,32 +8,49 @@ import VehicleCard from "@/components/vehicles/VehicleCard";
 import VehicleGallery from "@/components/vehicles/VehicleGallery";
 import PreOrderModal from "@/components/vehicles/PreOrderModal";
 import AppointmentModal from "@/components/vehicles/AppointmentModal";
-import type { LuxuryVehicle } from "@/src/data/vehicles";
+import type { CatalogVehicle } from "@/src/data/catalog";
 
 type VehicleDetailViewProps = {
-  vehicle: LuxuryVehicle;
+  vehicle: CatalogVehicle;
 };
 
-const SPEC_ITEMS: { key: keyof LuxuryVehicle["specs"]; label: string }[] = [
+const SPEC_ITEMS = [
   { key: "power", label: "Horsepower" },
-  { key: "acceleration", label: "0–100 km/h" },
+  { key: "acceleration", label: "0–60 mph" },
   { key: "topSpeed", label: "Top Speed" },
-  { key: "engine", label: "Engine / Drivetrain" },
-];
+  { key: "engine", label: "Engine" },
+  { key: "transmission", label: "Transmission" },
+  { key: "drivetrain", label: "Drivetrain" },
+] as const;
 
 export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
   const [preOrderOpen, setPreOrderOpen] = useState(false);
   const [appointmentOpen, setAppointmentOpen] = useState(false);
+  const brand = "brand" in vehicle ? vehicle.brand : undefined;
+  const status = "status" in vehicle ? vehicle.status : undefined;
+  const highlights = "highlights" in vehicle ? vehicle.highlights : undefined;
+  const brandHrefs: Record<string, string> = {
+    Honda: "/brands/honda",
+    Toyota: "/brands/toyota",
+    BMW: "/brands/bmw",
+    Nissan: "/brands/nissan",
+    Hyundai: "/brands/hyundai",
+  };
+  const backHref = brand && brandHrefs[brand] ? brandHrefs[brand] : "/vehicles";
+  const backLabel = brand && brandHrefs[brand] ? brand : "All vehicles";
+  const visibleSpecs = SPEC_ITEMS.filter((row) =>
+    Boolean(vehicle.specs[row.key as keyof typeof vehicle.specs]),
+  );
 
   return (
-    <main className="bg-white px-4 pb-28 pt-20 md:px-6 md:pb-24 md:pt-28">
-      <div className="mx-auto max-w-xl md:max-w-[720px]">
+    <main className="bg-white">
+      <div className="mx-auto max-w-3xl px-4 pb-28 pt-20 sm:px-8 sm:pt-24 md:pb-24">
         <Link
-          href="/vehicles"
-          className="mb-8 inline-flex min-h-11 items-center gap-2 text-xs font-medium uppercase tracking-widest text-neutral-400 transition-opacity hover:opacity-60"
+          href={backHref}
+          className="mb-8 inline-flex min-h-11 items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-[#6B7280] transition-opacity hover:opacity-70"
         >
           <ArrowLeft size={13} strokeWidth={1.5} />
-          All vehicles
+          {backLabel}
         </Link>
 
         <VehicleCard vehicle={vehicle} linked={false} priority />
@@ -43,52 +60,54 @@ export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 text-[15px] leading-relaxed text-neutral-500"
+            className="mt-2 text-[15px] leading-relaxed text-[#6B7280]"
           >
             {vehicle.tagline}
           </motion.p>
         )}
 
         <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <p className="font-serif text-xl font-medium text-[#111111] md:text-2xl">
+          <p className="font-serif text-xl font-medium text-[#111827] sm:text-2xl">
             {vehicle.price}
           </p>
-          <p className="text-xs uppercase tracking-widest text-neutral-400">
-            {vehicle.status}
-          </p>
+          {status && (
+            <p className="text-xs uppercase tracking-[0.2em] text-[#6B7280]">
+              {status}
+            </p>
+          )}
         </div>
 
         <VehicleGallery images={vehicle.galleryImages} title={vehicle.title} />
 
-        <section className="mt-10 md:mt-14">
-          <p className="text-xs font-medium uppercase tracking-widest text-neutral-400">
+        <section className="mt-10 sm:mt-14">
+          <p className="text-xs uppercase tracking-[0.2em] text-[#6B7280]">
             Specifications
           </p>
-          <h3 className="mt-2 font-serif text-2xl font-medium leading-tight text-[#111111] md:text-3xl">
+          <h3 className="mt-2 font-serif text-2xl font-medium leading-tight text-[#111827] sm:text-3xl">
             Key specs
           </h3>
 
-          <dl className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-neutral-200 bg-neutral-200">
-            {SPEC_ITEMS.map((row) => (
-              <div key={row.key} className="bg-white px-4 py-4 md:px-5 md:py-5">
-                <dt className="text-[10px] uppercase tracking-widest text-neutral-400">
+          <dl className="mt-6 grid grid-cols-2 gap-px overflow-hidden border border-neutral-200 bg-neutral-200">
+            {visibleSpecs.map((row) => (
+              <div key={row.key} className="bg-white px-4 py-4 sm:px-5 sm:py-5">
+                <dt className="text-[10px] uppercase tracking-[0.2em] text-[#6B7280]">
                   {row.label}
                 </dt>
-                <dd className="mt-1.5 font-serif text-base font-medium leading-snug text-[#111111] md:text-lg">
-                  {vehicle.specs[row.key]}
+                <dd className="mt-1.5 font-serif text-base font-medium leading-snug text-[#111827] sm:text-lg">
+                  {vehicle.specs[row.key as keyof typeof vehicle.specs]}
                 </dd>
               </div>
             ))}
           </dl>
 
-          {vehicle.highlights && vehicle.highlights.length > 0 && (
+          {highlights && highlights.length > 0 && (
             <ul className="mt-8 space-y-3">
-              {vehicle.highlights.map((item) => (
+              {highlights.map((item) => (
                 <li
                   key={item}
                   className="flex gap-3 text-sm leading-relaxed text-neutral-600"
                 >
-                  <span className="mt-2 h-px w-4 shrink-0 bg-[#111111]" />
+                  <span className="mt-2 h-px w-4 shrink-0 bg-[#111827]" />
                   {item}
                 </li>
               ))}
@@ -100,14 +119,14 @@ export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
           <button
             type="button"
             onClick={() => setPreOrderOpen(true)}
-            className="min-h-12 flex-1 bg-[#111111] px-6 py-3.5 text-xs font-medium uppercase tracking-widest text-white transition hover:bg-neutral-800"
+            className="min-h-12 flex-1 bg-[#111827] px-6 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-white transition hover:opacity-90"
           >
             Pre-Order
           </button>
           <button
             type="button"
             onClick={() => setAppointmentOpen(true)}
-            className="min-h-12 flex-1 border border-[#111111] bg-white px-6 py-3.5 text-xs font-medium uppercase tracking-widest text-[#111111] transition hover:bg-[#111111] hover:text-white"
+            className="min-h-12 flex-1 border border-[#111827] bg-white px-6 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-[#111827] transition hover:bg-[#111827] hover:text-white"
           >
             Book Appointment
           </button>
@@ -115,18 +134,18 @@ export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
       </div>
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-200 bg-white/95 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-md md:hidden">
-        <div className="mx-auto flex max-w-xl gap-3">
+        <div className="mx-auto flex max-w-3xl gap-3">
           <button
             type="button"
             onClick={() => setPreOrderOpen(true)}
-            className="min-h-12 flex-1 bg-[#111111] px-4 text-xs font-medium uppercase tracking-widest text-white"
+            className="min-h-12 flex-1 bg-[#111827] px-4 text-xs font-medium uppercase tracking-[0.2em] text-white"
           >
             Pre-Order
           </button>
           <button
             type="button"
             onClick={() => setAppointmentOpen(true)}
-            className="min-h-12 flex-1 border border-[#111111] bg-white px-4 text-xs font-medium uppercase tracking-widest text-[#111111]"
+            className="min-h-12 flex-1 border border-[#111827] bg-white px-4 text-xs font-medium uppercase tracking-[0.2em] text-[#111827]"
           >
             Book Appointment
           </button>

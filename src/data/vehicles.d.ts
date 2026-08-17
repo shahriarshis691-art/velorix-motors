@@ -5,10 +5,13 @@ export type VehicleSpecs = {
   acceleration: string;
   topSpeed: string;
   engine: string;
+  transmission?: string;
+  drivetrain?: string;
 };
 
 export type LuxuryVehicle = {
   id: string;
+  brand?: string;
   category: "VEHICLES";
   title: string;
   coverImage: string;
@@ -17,7 +20,7 @@ export type LuxuryVehicle = {
   specs: VehicleSpecs;
   highlights?: string[];
   price: string;
-  status: VehicleStatus;
+  status?: VehicleStatus;
 };
 
 export const vehiclesData: LuxuryVehicle[];

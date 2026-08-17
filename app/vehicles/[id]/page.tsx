@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import VehicleDetailView from "@/components/vehicles/VehicleDetailView";
-import { getVehicleById, getVehicleIds } from "@/src/data/vehicles";
+import { getVehicleById, getVehicleIds } from "@/src/data/catalog";
 
 type PageProps = {
   params: Promise<{ id: string }>;

@@ -9,13 +9,15 @@ const CARS = [
   {
     id: "honda",
     name: "HONDA",
+    href: "/brands/honda",
     image: "/images/honda-civic.jpg",
     alt: "Metallic grey Honda Civic sedan, front three-quarter view",
-    objectClass: "object-cover object-bottom",
+    objectClass: "object-contain object-center p-2 sm:p-3",
   },
   {
     id: "toyota",
     name: "TOYOTA",
+    href: "/brands/toyota",
     image: "/images/toyota-corolla.jpg",
     alt: "White Toyota Corolla Hybrid sedan on a studio background",
     objectClass: "object-contain object-center p-3 sm:p-4",
@@ -23,6 +25,7 @@ const CARS = [
   {
     id: "bmw",
     name: "BMW",
+    href: "/brands/bmw",
     image: "/images/bmw-5-series.jpg",
     alt: "Silver BMW 5 Series sedan in motion, front three-quarter view",
     objectClass: "object-cover object-center",
@@ -30,15 +33,17 @@ const CARS = [
   {
     id: "nissan",
     name: "NISSAN",
+    href: "/brands/nissan",
     image: "/images/nissan-versa.jpg",
     alt: "White Nissan Versa sedan on a studio background",
     objectClass: "object-contain object-center p-3 sm:p-4",
   },
   {
-    id: "allion",
-    name: "ALLION",
-    image: "/images/toyota-allion.jpg",
-    alt: "Metallic silver Toyota Allion sedan, front three-quarter view",
+    id: "hyundai",
+    name: "HYUNDAI",
+    href: "/brands/hyundai",
+    image: "/images/hyundai/hyundai-cover.jpg",
+    alt: "Hyundai collection cover",
     objectClass: "object-cover object-center",
   },
 ] as const;
@@ -97,7 +102,7 @@ function CatalogPanel({
       transition={{ delay: index * 0.07, duration: 0.55 }}
     >
       <Link
-        href={`/models/${car.id}`}
+        href={car.href}
         className="group relative isolate block aspect-[16/10] w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition duration-500 hover:shadow-md"
         aria-label={`View ${car.name} models`}
       >
