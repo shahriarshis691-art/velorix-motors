@@ -3,6 +3,13 @@ import { BRANDS, type BrandSlug } from "@/lib/brands";
 export type FuelType = "Hybrid" | "Petrol" | "EV";
 export type VehicleStatus = "Available" | "In Transit" | "Pre-Order";
 
+export type CarMedia = {
+  main: string;
+  rear: string;
+  interior: string;
+  gallery: string[];
+};
+
 export type Vehicle = {
   id: string;
   brand: BrandSlug;
@@ -20,9 +27,111 @@ export type Vehicle = {
   priceLakh: number;
   exteriorColor: string;
   interiorGrade: string;
-  image: string;
+  media: CarMedia;
   status: VehicleStatus;
 };
+
+function photos(
+  main: string,
+  rear: string,
+  interior: string,
+  gallery: string[] = [],
+): CarMedia {
+  return { main, rear, interior, gallery };
+}
+
+const MEDIA = {
+  bmw: photos("/images/bmw-coast.png", "/images/bmw-rear.png", "/images/bmw-interior.png"),
+  nissan: photos(
+    "/images/nissan-z-coast.png",
+    "/images/nissan-z-rear.png",
+    "/images/nissan-z-interior.png",
+  ),
+  harrierZ: photos(
+    "/images/toyota-harrier-z-coast.png",
+    "/images/toyota-harrier-z-rear.png",
+    "/images/toyota-leather-interior.png",
+    ["/images/toyota-harrier-coast.png", "/images/toyota-harrier.png"],
+  ),
+  crown: photos(
+    "/images/toyota-crown-coast.png",
+    "/images/toyota-crown-rear.png",
+    "/images/toyota-leather-interior.png",
+  ),
+  rav4: photos(
+    "/images/toyota-rav4-coast.png",
+    "/images/toyota-rav4-rear.png",
+    "/images/toyota-leather-interior.png",
+  ),
+  allionA15: photos(
+    "/images/toyota-allion-a15-coast.png",
+    "/images/toyota-allion-rear.png",
+    "/images/toyota-sedan-interior.png",
+    ["/images/toyota-allion-coast.png", "/images/toyota-allion.png"],
+  ),
+  premio: photos(
+    "/images/toyota-premio-coast.png",
+    "/images/toyota-premio-rear.png",
+    "/images/toyota-sedan-interior.png",
+  ),
+  prado: photos(
+    "/images/toyota-prado-coast.png",
+    "/images/toyota-prado-rear.png",
+    "/images/toyota-prado-interior.png",
+  ),
+  noah: photos(
+    "/images/toyota-noah-coast.png",
+    "/images/toyota-noah-rear.png",
+    "/images/toyota-noah-interior.png",
+  ),
+  civic: photos(
+    "/images/honda-civic-coast.png",
+    "/images/honda-civic-rear.png",
+    "/images/honda-cabin-interior.png",
+    ["/images/honda-civic.png"],
+  ),
+  vezel: photos(
+    "/images/honda-vezel-coast.png",
+    "/images/honda-vezel-rear.png",
+    "/images/honda-suv-interior.png",
+  ),
+  crv: photos(
+    "/images/honda-crv-coast.png",
+    "/images/honda-crv-rear.png",
+    "/images/honda-suv-interior.png",
+  ),
+  accord: photos(
+    "/images/honda-accord-coast.png",
+    "/images/honda-accord-rear.png",
+    "/images/honda-cabin-interior.png",
+  ),
+  zrv: photos(
+    "/images/honda-zrv-coast.png",
+    "/images/honda-zrv-rear.png",
+    "/images/honda-suv-interior.png",
+  ),
+  allion: photos(
+    "/images/toyota-allion-coast.png",
+    "/images/toyota-allion-rear.png",
+    "/images/toyota-sedan-interior.png",
+    ["/images/toyota-allion.png"],
+  ),
+} satisfies Record<string, CarMedia>;
+
+export function heroImage(car: Vehicle): string {
+  return car.media.main;
+}
+
+export function vehiclePhotos(car: Vehicle): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const src of [car.media.main, car.media.rear, car.media.interior, ...car.media.gallery]) {
+    if (!src || seen.has(src)) continue;
+    seen.add(src);
+    out.push(src);
+  }
+  return out;
+}
 
 export const VEHICLES: Vehicle[] = [
   {
@@ -40,7 +149,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 195,
     exteriorColor: "Storm Bay Metallic",
     interiorGrade: "A / 5.0",
-    image: "/images/bmw-ix.png",
+    media: MEDIA.bmw,
     status: "Available",
   },
   {
@@ -58,7 +167,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 168,
     exteriorColor: "Carbon Black",
     interiorGrade: "A / 4.5",
-    image: "/images/bmw-ix.png",
+    media: MEDIA.bmw,
     status: "Available",
   },
   {
@@ -76,7 +185,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 78.5,
     exteriorColor: "Mineral Grey",
     interiorGrade: "B / 4.0",
-    image: "/images/bmw-ix.png",
+    media: MEDIA.bmw,
     status: "Available",
   },
   {
@@ -94,7 +203,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 112,
     exteriorColor: "Brooklyn Grey",
     interiorGrade: "A / 4.5",
-    image: "/images/bmw-ix.png",
+    media: MEDIA.bmw,
     status: "In Transit",
   },
   {
@@ -112,7 +221,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 96,
     exteriorColor: "Passion Red",
     interiorGrade: "A / 5.0",
-    image: "/images/nissan-z.png",
+    media: MEDIA.nissan,
     status: "Available",
   },
   {
@@ -130,7 +239,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 62,
     exteriorColor: "Pearl White",
     interiorGrade: "A / 4.5",
-    image: "/images/nissan-z.png",
+    media: MEDIA.nissan,
     status: "Available",
   },
   {
@@ -148,7 +257,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 128,
     exteriorColor: "Brilliant Silver",
     interiorGrade: "B / 4.0",
-    image: "/images/nissan-z.png",
+    media: MEDIA.nissan,
     status: "Available",
   },
   {
@@ -166,7 +275,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 84,
     exteriorColor: "Dawn Blue",
     interiorGrade: "A / 4.5",
-    image: "/images/nissan-z.png",
+    media: MEDIA.nissan,
     status: "Pre-Order",
   },
   {
@@ -186,7 +295,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 86.5,
     exteriorColor: "Pearl White",
     interiorGrade: "A / 5.0",
-    image: "/images/toyota-harrier-z-coast.png",
+    media: MEDIA.harrierZ,
     status: "Available",
   },
   {
@@ -206,7 +315,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 115,
     exteriorColor: "Precious Metal / Two-Tone Black",
     interiorGrade: "A / 5.0",
-    image: "/images/toyota-crown-coast.png",
+    media: MEDIA.crown,
     status: "Pre-Order",
   },
   {
@@ -226,7 +335,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 68,
     exteriorColor: "Urban Khaki / Ash Grey",
     interiorGrade: "A / 4.5",
-    image: "/images/toyota-rav4-coast.png",
+    media: MEDIA.rav4,
     status: "Available",
   },
   {
@@ -246,7 +355,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 38.5,
     exteriorColor: "Wine Red / Pearl White",
     interiorGrade: "A / 4.5",
-    image: "/images/toyota-allion-a15-coast.png",
+    media: MEDIA.allionA15,
     status: "Available",
   },
   {
@@ -266,7 +375,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 39,
     exteriorColor: "Silver Metallic",
     interiorGrade: "A / 4.5",
-    image: "/images/toyota-premio-coast.png",
+    media: MEDIA.premio,
     status: "In Transit",
   },
   {
@@ -286,7 +395,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 185,
     exteriorColor: "Attitude Black Mica",
     interiorGrade: "A / 5.0",
-    image: "/images/toyota-prado-coast.png",
+    media: MEDIA.prado,
     status: "Pre-Order",
   },
   {
@@ -306,7 +415,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 54,
     exteriorColor: "Sparkling Black Pearl",
     interiorGrade: "A / 4.5",
-    image: "/images/toyota-noah-coast.png",
+    media: MEDIA.noah,
     status: "Available",
   },
   {
@@ -326,7 +435,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 56.5,
     exteriorColor: "Sonic Gray Pearl / Crimson Red",
     interiorGrade: "A / 5.0",
-    image: "/images/honda-civic-coast.png",
+    media: MEDIA.civic,
     status: "Available",
   },
   {
@@ -346,7 +455,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 42,
     exteriorColor: "Premium Sunlight White",
     interiorGrade: "A / 4.5",
-    image: "/images/honda-vezel-coast.png",
+    media: MEDIA.vezel,
     status: "Available",
   },
   {
@@ -366,7 +475,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 78,
     exteriorColor: "Crystal Black Pearl",
     interiorGrade: "A / 5.0",
-    image: "/images/honda-crv-coast.png",
+    media: MEDIA.crv,
     status: "In Transit",
   },
   {
@@ -386,7 +495,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 68.5,
     exteriorColor: "Lunar Silver Metallic",
     interiorGrade: "A / 4.5",
-    image: "/images/honda-accord-coast.png",
+    media: MEDIA.accord,
     status: "Available",
   },
   {
@@ -406,7 +515,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 64,
     exteriorColor: "Platinum White Pearl",
     interiorGrade: "A / 5.0",
-    image: "/images/honda-zrv-coast.png",
+    media: MEDIA.zrv,
     status: "Pre-Order",
   },
   {
@@ -424,7 +533,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 28.5,
     exteriorColor: "Pearl White",
     interiorGrade: "A / 4.5",
-    image: "/images/toyota-allion.png",
+    media: MEDIA.allion,
     status: "Available",
   },
   {
@@ -442,7 +551,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 32,
     exteriorColor: "Metallic Wine Red",
     interiorGrade: "A / 5.0",
-    image: "/images/toyota-allion.png",
+    media: MEDIA.allion,
     status: "Available",
   },
   {
@@ -460,7 +569,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 36,
     exteriorColor: "Pearl White",
     interiorGrade: "A / 4.5",
-    image: "/images/toyota-allion.png",
+    media: MEDIA.allion,
     status: "Available",
   },
   {
@@ -478,7 +587,7 @@ export const VEHICLES: Vehicle[] = [
     priceLakh: 38.5,
     exteriorColor: "Pearl White",
     interiorGrade: "A / 5.0",
-    image: "/images/toyota-allion.png",
+    media: MEDIA.allion,
     status: "In Transit",
   },
 ];

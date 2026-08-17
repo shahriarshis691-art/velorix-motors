@@ -1,9 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import type { Vehicle } from "@/lib/cars";
+import { vehiclePhotos, type Vehicle } from "@/lib/cars";
 
 type VehicleDetailsModalProps = {
   car: Vehicle | null;
@@ -16,6 +17,23 @@ export default function VehicleDetailsModal({
   onClose,
   onBook,
 }: VehicleDetailsModalProps) {
+  const photos = car ? vehiclePhotos(car) : [];
+  const [active, setActive] = useState(car?.media.main ?? "");
+
+  useEffect(() => {
+    if (car) setActive(car.media.main);
+  }, [car]);
+
+  const activeLabel = car
+    ? active === car.media.rear
+      ? "Rear"
+      : active === car.media.interior
+        ? "Interior"
+        : active === car.media.main
+          ? "Exterior"
+          : "Gallery"
+    : "";
+
   return (
     <AnimatePresence>
       {car && (
@@ -38,16 +56,56 @@ export default function VehicleDetailsModal({
             initial={{ opacity: 0, y: 24, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
-            className="glass-panel relative z-10 grid max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl md:grid-cols-2"
+            className="glass-panel relative z-10 grid max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl md:grid-cols-2"
           >
-            <div className="relative min-h-[240px] bg-white md:min-h-full">
-              <Image
-                src={car.image}
-                alt={car.modelName}
-                fill
-                className="object-cover object-center"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+            <div className="flex min-h-[260px] flex-col bg-black md:min-h-full">
+              <div className="relative aspect-[16/10] w-full md:flex-1 md:aspect-auto">
+                <Image
+                  src={active || car.media.main}
+                  alt={`${car.modelName} ${activeLabel.toLowerCase()}`}
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <span className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-black/60 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-white/90 backdrop-blur-md">
+                  {activeLabel}
+                </span>
+              </div>
+              <div className="grid grid-cols-4 gap-[3px] bg-black p-[3px] sm:grid-cols-5">
+                {photos.map((src) => {
+                  const selected = src === active;
+                  const thumbLabel =
+                    src === car.media.main
+                      ? "Main"
+                      : src === car.media.rear
+                        ? "Rear"
+                        : src === car.media.interior
+                          ? "Cabin"
+                          : "More";
+                  return (
+                    <button
+                      key={src}
+                      type="button"
+                      onClick={() => setActive(src)}
+                      aria-label={`Show ${thumbLabel} photo`}
+                      aria-pressed={selected}
+                      className={`relative aspect-[16/10] overflow-hidden ${
+                        selected
+                          ? "ring-2 ring-white"
+                          : "opacity-80 hover:opacity-100"
+                      }`}
+                    >
+                      <Image
+                        src={src}
+                        alt=""
+                        fill
+                        className="object-cover"
+                        sizes="120px"
+                      />
+                    </button>
+                  );
+                })}
+              </div>
             </div>
             <div className="p-6 sm:p-7">
               <div className="flex items-start justify-between gap-3">

@@ -23,7 +23,7 @@ export const BRANDS: BrandMeta[] = [
     name: "BMW",
     displayName: "BMW",
     tagline: "Certified iX, X5 and M Sport inventory from Japan auctions.",
-    image: "/images/bmw-ix.png",
+    image: "/images/bmw-coast.png",
     accent: "#1C69D4",
   },
   {
@@ -31,7 +31,7 @@ export const BRANDS: BrandMeta[] = [
     name: "Nissan",
     displayName: "NISSAN",
     tagline: "Z, Patrol and e-POWER hybrids prepared for private delivery.",
-    image: "/images/nissan-z.png",
+    image: "/images/nissan-z-coast.png",
     accent: "#C3002F",
   },
   {

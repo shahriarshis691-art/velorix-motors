@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { getBrand } from "@/lib/brands";
-import { statusLabel, type Vehicle } from "@/lib/cars";
+import { statusLabel, vehiclePhotos, type Vehicle } from "@/lib/cars";
 
 const STATUS_STYLE: Record<Vehicle["status"], string> = {
   Available: "border-emerald-400/35 bg-black/55 text-emerald-300",
@@ -23,26 +23,50 @@ export default function VehicleCard({
 }: VehicleCardProps) {
   const brand = getBrand(car.brand);
   const driveTrim = [car.driveType, car.packageName].filter(Boolean).join(" / ");
+  const photoCount = vehiclePhotos(car).length;
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b0b] transition-all duration-300 hover:border-white/20">
-      <div className="relative aspect-video w-full overflow-hidden sm:aspect-[16/9]">
-        <Image
-          src={car.image}
-          alt={`${car.modelName} ${car.year}`}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover object-center transition duration-700 group-hover:scale-[1.03]"
+      <button
+        type="button"
+        onClick={() => onDetails(car)}
+        className="relative grid aspect-[16/10] w-full grid-cols-[1.7fr_1fr] grid-rows-2 gap-[3px] bg-black text-left"
+        aria-label={`View ${car.modelName} gallery`}
+      >
+        <span className="relative row-span-2 overflow-hidden">
+          <Image
+            src={car.media.main}
+            alt={`${car.modelName} ${car.year} front three-quarter`}
+            fill
+            sizes="(max-width: 768px) 70vw, (max-width: 1280px) 40vw, 28vw"
+            className="object-cover object-center transition duration-700 group-hover:scale-[1.03]"
+          />
+          <span
+            className={`absolute left-3 top-3 rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] backdrop-blur-md ${STATUS_STYLE[car.status]}`}
+          >
+            {statusLabel(car.status)}
+          </span>
+          <span className="absolute right-3 top-3 rounded-full border border-white/20 bg-black/55 px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] text-white backdrop-blur-md">
+            Grade {car.grade.toFixed(1)}
+          </span>
+          <span className="absolute bottom-2.5 left-3 rounded-full border border-white/15 bg-black/60 px-2 py-0.5 text-[9px] uppercase tracking-[0.16em] text-white/85 backdrop-blur-md">
+            {photoCount} Photos
+          </span>
+        </span>
+
+        <MediaTile
+          src={car.media.rear}
+          alt={`${car.modelName} rear angle`}
+          label="Rear"
+          sizes="(max-width: 768px) 40vw, (max-width: 1280px) 22vw, 16vw"
         />
-        <span
-          className={`absolute left-3 top-3 rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] backdrop-blur-md ${STATUS_STYLE[car.status]}`}
-        >
-          {statusLabel(car.status)}
-        </span>
-        <span className="absolute right-3 top-3 rounded-full border border-white/20 bg-black/55 px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] text-white backdrop-blur-md">
-          Grade {car.grade.toFixed(1)}
-        </span>
-      </div>
+        <MediaTile
+          src={car.media.interior}
+          alt={`${car.modelName} interior`}
+          label="Interior"
+          sizes="(max-width: 768px) 40vw, (max-width: 1280px) 22vw, 16vw"
+        />
+      </button>
 
       <div className="flex flex-grow flex-col justify-between gap-4 bg-[#0a0a0a] p-5">
         <div>
@@ -82,5 +106,34 @@ export default function VehicleCard({
         </div>
       </div>
     </article>
+  );
+}
+
+function MediaTile({
+  src,
+  alt,
+  label,
+  sizes,
+}: {
+  src: string;
+  alt: string;
+  label: string;
+  sizes: string;
+}) {
+  return (
+    <span className="relative overflow-hidden">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={sizes}
+        className="object-cover object-center transition duration-700 group-hover:scale-[1.04]"
+      />
+      <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent px-2 pb-1.5 pt-6">
+        <span className="text-[9px] font-medium uppercase tracking-[0.16em] text-white/90">
+          {label}
+        </span>
+      </span>
+    </span>
   );
 }
