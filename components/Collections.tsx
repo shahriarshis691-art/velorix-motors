@@ -3,47 +3,40 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Eye, Play, Search } from "lucide-react";
 import ConciergeFab from "@/components/ConciergeFab";
-import type { CatalogCar } from "@/components/catalog";
 
-const CARS: CatalogCar[] = [
+const CARS = [
   {
-    id: "bmw",
-    name: "BMW",
-    image: "/images/bmw-ix.png",
-    alt: "Gunmetal grey BMW iX geometric kidney grille and sharp LED lights",
-    mode: "rotate",
-  },
-  {
-    id: "nissan",
-    name: "NISSAN",
-    image: "/images/nissan-z.png",
-    alt: "Crimson red Nissan Z signature LED daytime running lamp and honeycomb grille",
-    mode: "play",
+    id: "honda",
+    name: "HONDA",
+    image: "/images/honda-civic-coast.png",
+    alt: "Metallic crimson Honda Civic sedan on a coastal highway",
   },
   {
     id: "toyota",
     name: "TOYOTA",
-    image: "/images/toyota-harrier.png",
-    alt: "Pearl-white metallic bronze Toyota Harrier chrome grille wing and matrix LED headlight",
-    mode: "view",
+    image: "/images/toyota-harrier-coast.png",
+    alt: "Pearl white Toyota Harrier SUV on a coastal highway",
   },
   {
-    id: "honda",
-    name: "HONDA",
-    image: "/images/honda-civic.png",
-    alt: "Platinum-grey Honda CR-V aggressive fascia, LED light bar and Honda emblem",
-    mode: "arrow",
+    id: "bmw",
+    name: "BMW",
+    image: "/images/bmw-coast.png",
+    alt: "Gunmetal grey BMW sedan cruising a coastal highway",
+  },
+  {
+    id: "nissan",
+    name: "NISSAN",
+    image: "/images/nissan-z-coast.png",
+    alt: "Metallic red Nissan Z on a coastal highway",
   },
   {
     id: "allion",
     name: "ALLION",
-    image: "/images/toyota-allion.png",
-    alt: "Pearl-white Toyota Allion sedan LED projector headlight, chrome grille and bonnet",
-    mode: "zoom",
+    image: "/images/toyota-allion-coast.png",
+    alt: "Pearl white Toyota Allion sedan on a coastal highway",
   },
-];
+] as const;
 
 type CollectionsProps = {
   onBookAppointment?: () => void;
@@ -53,10 +46,10 @@ export default function Collections({ onBookAppointment }: CollectionsProps) {
   return (
     <section
       id="collections"
-      className="relative scroll-mt-20 overflow-hidden bg-black px-3 py-16 sm:px-5 sm:py-20 lg:px-8"
+      className="relative scroll-mt-20 overflow-hidden bg-[#050505] px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
     >
-      <div className="mx-auto max-w-[1600px]">
-        <div className="mb-8 flex items-end justify-between gap-6">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 flex items-end justify-between gap-6">
           <div>
             <p className="font-display text-[11px] tracking-[0.4em] text-vx-red">
               THE GARAGE
@@ -66,11 +59,11 @@ export default function Collections({ onBookAppointment }: CollectionsProps) {
             </h2>
           </div>
           <p className="hidden max-w-sm text-right text-xs leading-relaxed text-vx-silver/70 sm:block">
-            Five signatures. Open a marque to inspect re-conditioned stock.
+            Coastal signatures. Open a marque to inspect re-conditioned stock.
           </p>
         </div>
 
-        <div className="mx-auto flex max-w-[1440px] flex-wrap justify-center gap-2 sm:gap-2.5">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {CARS.map((car, i) => (
             <CatalogPanel key={car.id} car={car} index={i} />
           ))}
@@ -84,98 +77,40 @@ export default function Collections({ onBookAppointment }: CollectionsProps) {
   );
 }
 
-function CatalogPanel({ car, index }: { car: CatalogCar; index: number }) {
+function CatalogPanel({
+  car,
+  index,
+}: {
+  car: (typeof CARS)[number];
+  index: number;
+}) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ delay: index * 0.07, duration: 0.55 }}
-      whileHover={{ y: -4 }}
-      className="w-full sm:w-[calc(50%-0.3125rem)] lg:w-[calc(20%-0.5rem)]"
     >
       <Link
         href={`/models/${car.id}`}
-        className="group relative isolate flex aspect-[3/4] w-full overflow-hidden border border-white/[0.12] bg-white text-left"
+        className="group relative isolate block aspect-video w-full overflow-hidden border border-white/10 bg-[#0a0a0a] transition duration-500 hover:border-cyan-300/30 hover:shadow-[0_0_28px_rgba(34,211,238,0.12)]"
         aria-label={`View ${car.name} models`}
       >
         <Image
           src={car.image}
           alt={car.alt}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
-          className="object-cover object-[center_18%] transition-transform duration-700 ease-out group-hover:scale-[1.045]"
-          priority={index < 3}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          priority={index < 2}
         />
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black via-black/80 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
 
-        <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-3 pb-6 pt-16">
-          <span className="mb-3 flex h-8 w-8 items-center justify-center text-white/85 opacity-80 transition group-hover:opacity-100">
-            {car.mode === "zoom" && <Search size={16} strokeWidth={1.75} />}
-            {car.mode === "rotate" && <Icon360 />}
-            {car.mode === "play" && (
-              <Play size={15} strokeWidth={1.75} fill="currentColor" />
-            )}
-            {car.mode === "view" && <Eye size={16} strokeWidth={1.75} />}
-            {car.mode === "arrow" && <ArrowUpRight size={16} strokeWidth={1.75} />}
-          </span>
-          <span className="metallic-text font-display text-[15px] font-bold uppercase tracking-[0.28em] sm:text-base lg:text-[15px] xl:text-lg">
-            {car.name}
-          </span>
-        </div>
+        <span className="absolute bottom-4 left-5 z-10 font-display text-[11px] font-medium uppercase tracking-[0.35em] text-white/90 sm:text-xs">
+          {car.name}
+        </span>
       </Link>
     </motion.div>
-  );
-}
-
-function Icon360() {
-  return (
-    <svg
-      viewBox="0 0 32 32"
-      width={22}
-      height={22}
-      fill="none"
-      aria-hidden
-      className="text-white"
-    >
-      <path
-        d="M7 16a9 9 0 0 1 14.5-7.1"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M21.2 5.8v4.2h-4.2"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M25 16a9 9 0 0 1-14.5 7.1"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M10.8 26.2v-4.2h4.2"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <text
-        x="16"
-        y="18.2"
-        textAnchor="middle"
-        fill="currentColor"
-        fontSize="7.2"
-        fontFamily="ui-sans-serif, system-ui, sans-serif"
-        fontWeight="700"
-      >
-        360
-      </text>
-    </svg>
   );
 }
