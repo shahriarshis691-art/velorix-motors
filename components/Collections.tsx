@@ -12,7 +12,7 @@ const CARS = [
     href: "/brands/honda",
     image: "/images/honda-civic.jpg",
     alt: "Metallic grey Honda Civic sedan, front three-quarter view",
-    objectClass: "object-contain object-center p-2 sm:p-3",
+    objectClass: "object-cover object-[50%_65%]",
   },
   {
     id: "toyota",
