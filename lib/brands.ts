@@ -1,5 +1,4 @@
 export const BRAND_SLUGS = [
-  "land-rover",
   "bmw",
   "nissan",
   "toyota",
@@ -19,14 +18,6 @@ export type BrandMeta = {
 };
 
 export const BRANDS: BrandMeta[] = [
-  {
-    slug: "land-rover",
-    name: "Land Rover",
-    displayName: "LAND ROVER",
-    tagline: "Re-conditioned Defender, Discovery and Range Rover stock.",
-    image: "/images/land-rover-defender.png",
-    accent: "#C4A574",
-  },
   {
     slug: "bmw",
     name: "BMW",

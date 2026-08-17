@@ -21,7 +21,6 @@ export default function BrandEmblem({
 }
 
 function initials(slug: BrandSlug) {
-  if (slug === "land-rover") return "LR";
   if (slug === "bmw") return "BMW";
   if (slug === "nissan") return "N";
   if (slug === "toyota") return "T";

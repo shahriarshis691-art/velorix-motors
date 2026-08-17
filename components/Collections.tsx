@@ -9,13 +9,6 @@ import type { CatalogCar } from "@/components/catalog";
 
 const CARS: CatalogCar[] = [
   {
-    id: "land-rover",
-    name: "LAND ROVER",
-    image: "/images/land-rover-defender.png",
-    alt: "Metallic red Land Rover Defender circular LED headlight, grille and emblem",
-    mode: "zoom",
-  },
-  {
     id: "bmw",
     name: "BMW",
     image: "/images/bmw-ix.png",
@@ -73,11 +66,11 @@ export default function Collections({ onBookAppointment }: CollectionsProps) {
             </h2>
           </div>
           <p className="hidden max-w-sm text-right text-xs leading-relaxed text-vx-silver/70 sm:block">
-            Six signatures. Open a marque to inspect re-conditioned stock.
+            Five signatures. Open a marque to inspect re-conditioned stock.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="mx-auto flex max-w-[1440px] flex-wrap justify-center gap-2 sm:gap-2.5">
           {CARS.map((car, i) => (
             <CatalogPanel key={car.id} car={car} index={i} />
           ))}
@@ -99,6 +92,7 @@ function CatalogPanel({ car, index }: { car: CatalogCar; index: number }) {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ delay: index * 0.07, duration: 0.55 }}
       whileHover={{ y: -4 }}
+      className="w-full sm:w-[calc(50%-0.3125rem)] lg:w-[calc(20%-0.5rem)]"
     >
       <Link
         href={`/models/${car.id}`}
@@ -109,7 +103,7 @@ function CatalogPanel({ car, index }: { car: CatalogCar; index: number }) {
           src={car.image}
           alt={car.alt}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 16vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
           className="object-cover object-[center_18%] transition-transform duration-700 ease-out group-hover:scale-[1.045]"
           priority={index < 3}
         />
