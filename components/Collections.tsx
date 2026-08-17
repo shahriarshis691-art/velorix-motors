@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Play, Search } from "lucide-react";
+import { ArrowUpRight, Eye, Play, Search } from "lucide-react";
 import CatalogViewer from "@/components/CatalogViewer";
 import ConciergeFab from "@/components/ConciergeFab";
 import type { CatalogCar } from "@/components/catalog";
@@ -13,22 +13,36 @@ const CARS: CatalogCar[] = [
     id: "land-rover",
     name: "LAND ROVER",
     image: "/images/land-rover-defender.png",
-    alt: "Red Land Rover Defender 90 front fascia, grille and badge",
+    alt: "Metallic red Land Rover Defender circular LED headlight, grille and emblem",
     mode: "zoom",
   },
   {
     id: "bmw",
     name: "BMW",
     image: "/images/bmw-ix.png",
-    alt: "Dark grey BMW iX kidney grille and roundel",
+    alt: "Gunmetal grey BMW iX geometric kidney grille and sharp LED lights",
     mode: "rotate",
   },
   {
     id: "nissan",
     name: "NISSAN",
     image: "/images/nissan-z.png",
-    alt: "Red Nissan Z headlamp and badge",
+    alt: "Crimson red Nissan Z signature LED daytime running lamp and honeycomb grille",
     mode: "play",
+  },
+  {
+    id: "toyota",
+    name: "TOYOTA",
+    image: "/images/toyota-harrier.png",
+    alt: "Pearl-white metallic bronze Toyota Harrier chrome grille wing and matrix LED headlight",
+    mode: "view",
+  },
+  {
+    id: "honda",
+    name: "HONDA",
+    image: "/images/honda-civic.png",
+    alt: "Platinum-grey Honda CR-V aggressive fascia, LED light bar and Honda emblem",
+    mode: "arrow",
   },
 ];
 
@@ -42,9 +56,9 @@ export default function Collections({ onBookAppointment }: CollectionsProps) {
   return (
     <section
       id="collections"
-      className="relative scroll-mt-20 overflow-hidden bg-[#050505] px-3 py-16 sm:px-5 sm:py-20 lg:px-8"
+      className="relative scroll-mt-20 overflow-hidden bg-black px-3 py-16 sm:px-5 sm:py-20 lg:px-8"
     >
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[1600px]">
         <div className="mb-8 flex items-end justify-between gap-6">
           <div>
             <p className="font-display text-[11px] tracking-[0.4em] text-vx-red">
@@ -55,11 +69,11 @@ export default function Collections({ onBookAppointment }: CollectionsProps) {
             </h2>
           </div>
           <p className="hidden max-w-sm text-right text-xs leading-relaxed text-vx-silver/70 sm:block">
-            Three signatures. Inspect, orbit, or play.
+            Five signatures. Inspect, orbit, play, view, or traverse.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-2 sm:gap-2.5 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5 lg:grid-cols-5">
           {CARS.map((car, i) => (
             <CatalogPanel
               key={car.id}
@@ -94,32 +108,34 @@ function CatalogPanel({
       onClick={onOpen}
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ delay: index * 0.08, duration: 0.55 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ delay: index * 0.07, duration: 0.55 }}
       whileHover={{ y: -4 }}
-      className="group relative isolate flex min-h-[520px] w-full overflow-hidden bg-white text-left sm:min-h-[620px] lg:min-h-[72vh]"
+      className="group relative isolate aspect-[3/4] w-full overflow-hidden border border-white/[0.12] bg-white text-left"
       aria-label={`Open ${car.name} ${car.mode} view`}
     >
       <Image
         src={car.image}
         alt={car.alt}
         fill
-        sizes="(max-width: 1024px) 100vw, 33vw"
-        className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-        priority={index === 0}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+        className="object-cover object-[center_18%] transition-transform duration-700 ease-out group-hover:scale-[1.045]"
+        priority={index < 3}
       />
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-[#2b2b2b] via-[#1c1c1c]/85 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black via-black/80 to-transparent" />
 
-      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-4 pb-7 pt-16">
+      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-3 pb-6 pt-16">
         <span className="mb-3 flex h-8 w-8 items-center justify-center text-white/85 opacity-80 transition group-hover:opacity-100">
           {car.mode === "zoom" && <Search size={16} strokeWidth={1.75} />}
           {car.mode === "rotate" && <Icon360 />}
           {car.mode === "play" && (
             <Play size={15} strokeWidth={1.75} fill="currentColor" />
           )}
+          {car.mode === "view" && <Eye size={16} strokeWidth={1.75} />}
+          {car.mode === "arrow" && <ArrowUpRight size={16} strokeWidth={1.75} />}
         </span>
-        <span className="metallic-text font-display text-lg font-bold uppercase tracking-[0.28em] sm:text-xl">
+        <span className="metallic-text font-display text-[15px] font-bold uppercase tracking-[0.28em] sm:text-base lg:text-[15px] xl:text-lg">
           {car.name}
         </span>
       </div>

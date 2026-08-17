@@ -25,7 +25,7 @@ export default function ConciergeFab({ onBookAppointment }: ConciergeFabProps) {
               ATELIER CONCIERGE
             </p>
             <p className="mt-2 text-sm leading-relaxed text-vx-silver">
-              Enquire about Land Rover, BMW iX, or Nissan Z availability.
+              Enquire about Land Rover, BMW, Nissan, Toyota, or Honda availability.
             </p>
             <button
               type="button"

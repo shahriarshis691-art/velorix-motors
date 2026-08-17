@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type MutableRefObject } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Pause, Play, Search, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye, Pause, Play, Search, X } from "lucide-react";
 import type { CatalogCar } from "@/components/catalog";
 
 type CatalogViewerProps = {
@@ -40,7 +40,11 @@ export default function CatalogViewer({ car, onClose }: CatalogViewerProps) {
       ? "INSPECT"
       : car?.mode === "rotate"
         ? "360° VIEW"
-        : "CINEMA";
+        : car?.mode === "play"
+          ? "CINEMA"
+          : car?.mode === "view"
+            ? "STUDIO VIEW"
+            : "TRAVERSE";
 
   return (
     <AnimatePresence>
@@ -110,6 +114,12 @@ export default function CatalogViewer({ car, onClose }: CatalogViewerProps) {
               {car.mode === "play" && (
                 <PlayStage src={car.image} alt={car.name} playing={playing} />
               )}
+              {car.mode === "view" && (
+                <ViewStage src={car.image} alt={car.name} />
+              )}
+              {car.mode === "arrow" && (
+                <ArrowStage src={car.image} alt={car.name} />
+              )}
             </div>
 
             <footer className="flex items-center justify-between gap-4 border-t border-white/10 px-5 py-3">
@@ -117,6 +127,8 @@ export default function CatalogViewer({ car, onClose }: CatalogViewerProps) {
                 {car.mode === "zoom" && "Click to magnify · move to inspect"}
                 {car.mode === "rotate" && "Drag horizontally to orbit"}
                 {car.mode === "play" && "Cinematic front fascia study"}
+                {car.mode === "view" && "Move to reveal · atelier spotlight"}
+                {car.mode === "arrow" && "Use arrows to traverse the fascia"}
               </p>
               {car.mode === "zoom" && (
                 <span className="flex items-center gap-2 text-[11px] tracking-[0.16em] text-vx-silver">
@@ -132,6 +144,11 @@ export default function CatalogViewer({ car, onClose }: CatalogViewerProps) {
                   {playing ? <Pause size={12} /> : <Play size={12} />}
                   {playing ? "Pause" : "Play"}
                 </button>
+              )}
+              {car.mode === "view" && (
+                <span className="flex items-center gap-2 text-[11px] tracking-[0.16em] text-vx-silver">
+                  <Eye size={12} /> Gaze
+                </span>
               )}
             </footer>
           </motion.div>
@@ -248,6 +265,69 @@ function PlayStage({
         className={`h-full w-full object-cover object-top ${playing ? "catalog-kenburns" : ""}`}
       />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
+    </div>
+  );
+}
+
+function ViewStage({ src, alt }: { src: string; alt: string }) {
+  const [spot, setSpot] = useState({ x: 50, y: 38 });
+
+  return (
+    <div
+      className="relative h-full w-full overflow-hidden bg-white"
+      onMouseMove={(e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        setSpot({
+          x: ((e.clientX - r.left) / r.width) * 100,
+          y: ((e.clientY - r.top) / r.height) * 100,
+        });
+      }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={alt}
+        className="h-full w-full object-cover object-top"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 transition-[background] duration-150"
+        style={{
+          background: `radial-gradient(circle 32% at ${spot.x}% ${spot.y}%, transparent 0%, rgba(0,0,0,0.18) 42%, rgba(0,0,0,0.62) 100%)`,
+        }}
+      />
+    </div>
+  );
+}
+
+function ArrowStage({ src, alt }: { src: string; alt: string }) {
+  const [pan, setPan] = useState(0);
+
+  return (
+    <div className="relative h-full w-full overflow-hidden bg-white">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={alt}
+        draggable={false}
+        className="h-full w-full select-none object-cover object-top transition-transform duration-500 ease-out"
+        style={{ transform: `scale(1.22) translateX(${pan * 9}%)` }}
+      />
+      <button
+        type="button"
+        aria-label="Pan left"
+        onClick={() => setPan((v) => Math.max(-1, v - 1))}
+        className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white backdrop-blur-sm transition hover:bg-black/70"
+      >
+        <ChevronLeft size={18} />
+      </button>
+      <button
+        type="button"
+        aria-label="Pan right"
+        onClick={() => setPan((v) => Math.min(1, v + 1))}
+        className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white backdrop-blur-sm transition hover:bg-black/70"
+      >
+        <ChevronRight size={18} />
+      </button>
     </div>
   );
 }
