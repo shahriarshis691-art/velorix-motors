@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" fill="none">
+  <defs>
+    <linearGradient id="body" x1="400" y1="40" x2="400" y2="240">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <filter id="headlight">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+  <ellipse cx="400" cy="250" rx="260" ry="14" fill="#22D3EE" opacity="0.18"/>
+  <path d="M80 210 C140 210 170 150 250 138 C320 126 360 78 400 76 C440 74 480 126 550 138 C630 150 660 210 720 210 C700 230 100 230 80 210 Z" fill="url(#body)"/>
+  <path d="M190 168 C250 150 310 146 400 146 C490 146 550 150 610 168" stroke="#94A3B8" stroke-width="2" opacity="0.4"/>
+  <ellipse cx="214" cy="168" rx="42" ry="16" fill="#F8FAFC" filter="url(#headlight)"/>
+  <ellipse cx="586" cy="168" rx="42" ry="16" fill="#F8FAFC" filter="url(#headlight)"/>
+  <ellipse cx="214" cy="168" rx="26" ry="8" fill="#FFFFFF"/>
+  <ellipse cx="586" cy="168" rx="26" ry="8" fill="#FFFFFF"/>
+  <rect x="392" y="210" width="16" height="6" rx="1" fill="#EF4444" opacity="0.8"/>
+</svg>
