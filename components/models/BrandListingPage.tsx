@@ -52,10 +52,6 @@ export default function BrandListingPage({ brand, cars }: BrandListingPageProps)
   };
 
   const handleDetails = (car: Vehicle) => {
-    if (car.status === "Pre-Order") {
-      openTestDrive(car);
-      return;
-    }
     setDetails(car);
   };
 
@@ -112,7 +108,7 @@ export default function BrandListingPage({ brand, cars }: BrandListingPageProps)
                   alt={`${brand.name} atelier`}
                   fill
                   priority
-                  className="object-cover object-[center_18%]"
+                  className="object-cover object-center"
                   sizes="(max-width: 768px) 100vw, 40vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent md:from-[#0a0a0a]/80" />
@@ -138,7 +134,7 @@ export default function BrandListingPage({ brand, cars }: BrandListingPageProps)
                 <VehicleCard
                   key={car.id}
                   car={car}
-                  onBook={openTestDrive}
+                  onPreOrder={openTestDrive}
                   onDetails={handleDetails}
                 />
               ))}

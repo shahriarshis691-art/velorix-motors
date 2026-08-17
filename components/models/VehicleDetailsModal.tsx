@@ -4,7 +4,6 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import type { Vehicle } from "@/lib/cars";
-import BrushedMetalButton from "@/components/ui/BrushedMetalButton";
 
 type VehicleDetailsModalProps = {
   car: Vehicle | null;
@@ -46,7 +45,7 @@ export default function VehicleDetailsModal({
                 src={car.image}
                 alt={car.modelName}
                 fill
-                className="object-cover object-[center_20%]"
+                className="object-cover object-center"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
@@ -79,22 +78,21 @@ export default function VehicleDetailsModal({
 
               <dl className="mt-6 grid grid-cols-2 gap-3 text-sm">
                 <Detail label="Mileage" value={car.mileage} />
-                <Detail label="Fuel" value={car.fuelType} />
+                <Detail label="Powertrain" value={car.engine ?? car.fuelType} />
                 <Detail label="Transmission" value={car.transmission} />
+                <Detail label="Drive" value={car.driveType ?? "FWD"} />
                 <Detail label="Exterior" value={car.exteriorColor} />
-                <Detail label="Interior grade" value={car.interiorGrade} />
                 <Detail label="Lot ID" value={car.id.toUpperCase()} />
               </dl>
 
               <div className="mt-8">
-                <BrushedMetalButton
-                  className="w-full"
+                <button
+                  type="button"
                   onClick={() => onBook(car)}
+                  className="w-full rounded-xl bg-[#0088ff] px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#0077ee]"
                 >
-                  {car.status === "Pre-Order"
-                    ? "Pre-Order Inquiry"
-                    : "Book Test Drive"}
-                </BrushedMetalButton>
+                  Pre-Order
+                </button>
               </div>
             </div>
           </motion.div>

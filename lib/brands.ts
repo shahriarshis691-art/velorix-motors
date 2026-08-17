@@ -46,8 +46,8 @@ export const BRANDS: BrandMeta[] = [
     slug: "honda",
     name: "Honda",
     displayName: "HONDA",
-    tagline: "Civic Type R, CR-V and Accord hybrids ready for atelier viewing.",
-    image: "/images/honda-civic.png",
+    tagline: "Civic, Vezel, CR-V, Accord and ZR-V hybrids from Japan auctions.",
+    image: "/images/honda-civic-coast.png",
     accent: "#E40521",
   },
   {
