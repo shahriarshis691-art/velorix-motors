@@ -5,7 +5,7 @@ import { hyundaiVehicles } from "@/src/data/hyundaiVehicles";
 export const metadata: Metadata = {
   title: "Hyundai Collection — VELORIX MOTORS",
   description:
-    "IONIQ 5 N, Sonata N Line, Palisade Calligraphy and Elantra N — the Hyundai atelier collection at VELORIX MOTORS.",
+    "Creta, Alcazar, Tucson and Santa Fe — Hyundai models assembled and available in Bangladesh, at VELORIX MOTORS.",
 };
 
 export default function HyundaiBrandPage() {
