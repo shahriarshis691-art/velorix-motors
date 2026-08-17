@@ -18,7 +18,7 @@ export const hondaVehicles = [
       engine: "2.0L Turbo Inline-4",
       transmission: "6-Speed Manual",
     },
-    price: "$44,795",
+    price: "BDT 53.8 Lakh",
   },
   {
     id: "honda-accord-hybrid",
@@ -38,7 +38,7 @@ export const hondaVehicles = [
       engine: "2.0L 4-Cylinder + Electric Motor",
       transmission: "E-CVT",
     },
-    price: "$32,895",
+    price: "BDT 39.5 Lakh",
   },
   {
     id: "honda-cr-v",
@@ -58,7 +58,7 @@ export const hondaVehicles = [
       engine: "1.5L Turbocharged 4-Cylinder",
       transmission: "CVT",
     },
-    price: "$29,500",
+    price: "BDT 35.4 Lakh",
   },
 ];
 

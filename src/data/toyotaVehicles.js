@@ -18,7 +18,7 @@ export const toyotaVehicles = [
       engine: "2.4L Turbo Hybrid",
       drivetrain: "All-Wheel Drive",
     },
-    price: "$41,440",
+    price: "BDT 49.7 Lakh",
   },
   {
     id: "toyota-camry-hybrid",
@@ -39,7 +39,7 @@ export const toyotaVehicles = [
       engine: "2.5L 4-Cylinder Hybrid",
       drivetrain: "Front-Wheel Drive",
     },
-    price: "$28,400",
+    price: "BDT 34.1 Lakh",
   },
   {
     id: "toyota-gr-supra",
@@ -60,7 +60,7 @@ export const toyotaVehicles = [
       engine: "3.0L Twin-Scroll Turbo Inline-6",
       drivetrain: "Rear-Wheel Drive",
     },
-    price: "$56,250",
+    price: "BDT 67.5 Lakh",
   },
   {
     id: "toyota-land-cruiser",
@@ -80,7 +80,7 @@ export const toyotaVehicles = [
       engine: "i-FORCE MAX 2.4L Turbo Hybrid",
       drivetrain: "Full-Time 4WD",
     },
-    price: "$55,950",
+    price: "BDT 67.1 Lakh",
   },
 ];
 

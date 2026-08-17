@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { getBrand } from "@/lib/brands";
 import { statusLabel, triptychPhotos, type Vehicle } from "@/lib/cars";
+import { formatBDT } from "@/src/utils/formatters";
 
 const STATUS_STYLE: Record<Vehicle["status"], string> = {
   Available: "border-emerald-200 bg-white/90 text-emerald-700",
@@ -106,7 +107,7 @@ export default function VehicleCard({
         </div>
 
         <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
-          <p className="text-lg font-bold text-neutral-900">{car.price}</p>
+          <p className="text-lg font-bold text-neutral-900">{formatBDT(car.price)}</p>
           <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center">
             <button
               type="button"

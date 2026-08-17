@@ -18,7 +18,7 @@ export const nissanVehicles = [
       engine: "3.8L Twin-Turbo V6 (VR38DETT)",
       drivetrain: "ATTESA E-TS All-Wheel Drive",
     },
-    price: "$221,090",
+    price: "BDT 2.65 Crore",
   },
   {
     id: "nissan-z-nismo",
@@ -39,7 +39,7 @@ export const nissanVehicles = [
       engine: "3.0L Twin-Turbo V6",
       drivetrain: "Rear-Wheel Drive",
     },
-    price: "$65,750",
+    price: "BDT 78.9 Lakh",
   },
   {
     id: "nissan-patrol-nismo",
@@ -60,7 +60,7 @@ export const nissanVehicles = [
       engine: "5.6L Naturally Aspirated V8",
       drivetrain: "All-Mode 4x4",
     },
-    price: "$105,000",
+    price: "BDT 1.26 Crore",
   },
   {
     id: "nissan-versa-sedan",
@@ -81,7 +81,7 @@ export const nissanVehicles = [
       engine: "1.6L DOHC 4-Cylinder",
       drivetrain: "Front-Wheel Drive",
     },
-    price: "$16,680",
+    price: "BDT 20.0 Lakh",
   },
 ];
 

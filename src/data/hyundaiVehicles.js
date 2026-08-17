@@ -18,7 +18,7 @@ export const hyundaiVehicles = [
       engine: "Dual Electric Motors (84 kWh Battery)",
       drivetrain: "AWD with N Drift Optimizer",
     },
-    price: "$66,100",
+    price: "BDT 79.3 Lakh",
   },
   {
     id: "hyundai-sonata-n-line",
@@ -39,7 +39,7 @@ export const hyundaiVehicles = [
       engine: "2.5L Turbocharged 4-Cylinder",
       drivetrain: "Front-Wheel Drive",
     },
-    price: "$34,950",
+    price: "BDT 41.9 Lakh",
   },
   {
     id: "hyundai-palisade-calligraphy",
@@ -60,7 +60,7 @@ export const hyundaiVehicles = [
       engine: "3.8L V6 GDI",
       drivetrain: "HTRAC All-Wheel Drive",
     },
-    price: "$50,100",
+    price: "BDT 60.1 Lakh",
   },
   {
     id: "hyundai-elantra-n",
@@ -80,7 +80,7 @@ export const hyundaiVehicles = [
       engine: "2.0L Turbocharged Flat-Power GDI",
       drivetrain: "Front-Wheel Drive with e-LSD",
     },
-    price: "$33,700",
+    price: "BDT 40.4 Lakh",
   },
 ];
 

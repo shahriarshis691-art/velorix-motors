@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { statusLabel, vehiclePhotos, type Vehicle } from "@/lib/cars";
+import { formatBDT } from "@/src/utils/formatters";
 
 type VehicleDetailsModalProps = {
   car: Vehicle | null;
@@ -128,7 +129,7 @@ export default function VehicleDetailsModal({
               </div>
 
               <p className="mt-4 font-display text-2xl font-bold text-neutral-900">
-                {car.price}
+                {formatBDT(car.price)}
               </p>
               <p className="mt-1 text-xs uppercase tracking-[0.16em] text-neutral-500">
                 {statusLabel(car.status)} · {car.packageName} · {car.exteriorColor}

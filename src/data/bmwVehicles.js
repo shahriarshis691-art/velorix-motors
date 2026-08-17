@@ -18,7 +18,7 @@ export const bmwVehicles = [
       engine: "4.4L Twin-Turbo V8 + Electric Motor",
       drivetrain: "M xDrive AWD",
     },
-    price: "$119,500",
+    price: "BDT 1.43 Crore",
   },
   {
     id: "bmw-7-series-sedan",
@@ -39,7 +39,7 @@ export const bmwVehicles = [
       engine: "4.4L Twin-Turbo V8 with Mild Hybrid",
       drivetrain: "xDrive All-Wheel Drive",
     },
-    price: "$121,300",
+    price: "BDT 1.46 Crore",
   },
   {
     id: "bmw-m4-competition",
@@ -60,7 +60,7 @@ export const bmwVehicles = [
       engine: "3.0L M TwinPower Turbo Inline-6",
       drivetrain: "M xDrive All-Wheel Drive",
     },
-    price: "$88,300",
+    price: "BDT 1.06 Crore",
   },
   {
     id: "bmw-x7-m60i",
@@ -81,7 +81,7 @@ export const bmwVehicles = [
       engine: "4.4L TwinPower Turbo V8",
       drivetrain: "xDrive All-Wheel Drive",
     },
-    price: "$110,900",
+    price: "BDT 1.33 Crore",
   },
 ];
 

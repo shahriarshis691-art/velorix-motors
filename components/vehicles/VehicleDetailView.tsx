@@ -9,6 +9,7 @@ import VehicleGallery from "@/components/vehicles/VehicleGallery";
 import PreOrderModal from "@/components/vehicles/PreOrderModal";
 import AppointmentModal from "@/components/vehicles/AppointmentModal";
 import type { CatalogVehicle } from "@/src/data/catalog";
+import { formatBDT } from "@/src/utils/formatters";
 
 type VehicleDetailViewProps = {
   vehicle: CatalogVehicle;
@@ -68,7 +69,7 @@ export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
 
         <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <p className="font-serif text-xl font-medium text-[#111827] sm:text-2xl">
-            {vehicle.price}
+            {formatBDT(vehicle.price)}
           </p>
           {status && (
             <p className="text-xs uppercase tracking-[0.2em] text-[#6B7280]">
