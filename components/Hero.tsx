@@ -15,31 +15,29 @@ export default function Hero({
   return (
     <section
       id="top"
-      className="relative min-h-[550px] w-full overflow-hidden bg-[#050505] sm:min-h-[620px] lg:min-h-[720px]"
+      className="relative flex min-h-[100svh] w-full flex-col overflow-hidden bg-[#050505] pt-16 sm:pt-[72px]"
     >
-      <Image
-        src="/images/hero-night-drive.png"
-        alt="VELORIX MOTORS luxury sedan on a night city street"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-[70%_center] sm:object-right"
-      />
+      <div className="relative mx-auto min-h-[520px] w-full max-w-5xl flex-1">
+        <Image
+          src="/images/velorix-hero.png"
+          alt="Velorix Motors"
+          fill
+          priority
+          sizes="(max-width: 1024px) 100vw, 64rem"
+          className="object-contain object-center"
+        />
+      </div>
 
       <div
         aria-hidden
-        className="absolute inset-0 z-[1] bg-gradient-to-r from-[#050505]/35 via-[#050505]/10 to-transparent"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 z-[1] bg-gradient-to-t from-[#050505]/80 via-[#050505]/20 to-transparent"
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#050505] via-transparent to-transparent"
       />
 
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute bottom-12 left-6 z-20 flex flex-row flex-wrap items-center gap-4 sm:left-12"
+        className="relative z-20 flex flex-row flex-wrap items-center justify-center gap-4 px-6 pb-12 pt-2 sm:pb-16"
       >
         <button
           type="button"
