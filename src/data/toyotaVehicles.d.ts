@@ -9,10 +9,12 @@ export type ToyotaVehicle = {
   galleryImages: string[];
   specs: {
     power: string;
-    acceleration: string;
-    topSpeed: string;
+    mileage: string;
     engine: string;
     drivetrain: string;
+    seating: string;
+    acceleration?: string;
+    topSpeed?: string;
   };
   price: string;
 };

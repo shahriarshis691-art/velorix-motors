@@ -19,9 +19,11 @@ const SPEC_ITEMS = [
   { key: "power", label: "Horsepower" },
   { key: "acceleration", label: "0–60 mph" },
   { key: "topSpeed", label: "Top Speed" },
+  { key: "mileage", label: "Mileage" },
   { key: "engine", label: "Engine" },
   { key: "transmission", label: "Transmission" },
   { key: "drivetrain", label: "Drivetrain" },
+  { key: "seating", label: "Seating" },
 ] as const;
 
 export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
