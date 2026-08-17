@@ -54,8 +54,8 @@ export const BRANDS: BrandMeta[] = [
     slug: "allion",
     name: "Toyota Allion",
     displayName: "ALLION",
-    tagline: "Japan-auction Allion sedans, A15 and A18 grades ready for delivery.",
-    image: "/images/toyota-allion.png",
+    tagline: "Eight Japan-auction Allion trims — A15, A18 and A20 packages ready for private delivery.",
+    image: "/images/toyota-allion-coast.png",
     accent: "#EB0A1E",
   },
 ];

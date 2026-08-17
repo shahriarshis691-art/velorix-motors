@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import { vehiclePhotos, type Vehicle } from "@/lib/cars";
+import { statusLabel, vehiclePhotos, type Vehicle } from "@/lib/cars";
 
 type VehicleDetailsModalProps = {
   car: Vehicle | null;
@@ -131,7 +131,7 @@ export default function VehicleDetailsModal({
                 {car.price}
               </p>
               <p className="mt-1 text-xs uppercase tracking-[0.16em] text-vx-silver/70">
-                {car.status} · {car.packageName}
+                {statusLabel(car.status)} · {car.packageName} · {car.exteriorColor}
               </p>
 
               <dl className="mt-6 grid grid-cols-2 gap-3 text-sm">

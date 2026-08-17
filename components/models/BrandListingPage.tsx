@@ -95,7 +95,13 @@ export default function BrandListingPage({ brand, cars }: BrandListingPageProps)
           </p>
 
           {visible.length > 0 ? (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <div
+              className={
+                brand.slug === "allion"
+                  ? "grid grid-cols-1 gap-6 lg:grid-cols-2"
+                  : "grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
+              }
+            >
               {visible.map((car) => (
                 <VehicleCard
                   key={car.id}
