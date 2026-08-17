@@ -20,7 +20,7 @@ type NavbarProps = {
 
 export default function Navbar({ onBookAppointment }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -32,34 +32,39 @@ export default function Navbar({ onBookAppointment }: NavbarProps) {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+    setIsOpen(false);
+  }, [pathname]);
 
   const handleNav = (href: string, hash: string) => {
-    setOpen(false);
+    setIsOpen(false);
+
     if (hash === "#pre-order") {
       onBookAppointment();
       return;
     }
+
     if (pathname === "/") {
-      document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+      window.setTimeout(() => {
+        document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+      }, 0);
       return;
     }
+
     router.push(href);
   };
+
+  const linkClassName =
+    "rounded-lg px-4 py-3 text-sm font-semibold uppercase tracking-wider text-neutral-300 transition-all hover:bg-white/5 hover:text-white";
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-        scrolled
+        scrolled || isOpen
           ? "border-white/10 bg-black/50 backdrop-blur-md"
           : "border-transparent bg-black/20 backdrop-blur-sm"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-[72px] sm:px-8">
+      <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-[72px] sm:px-8">
         <Link href="/" className="relative z-10" aria-label="VELORIX MOTORS home">
           <VelorixLogo size="sm" />
         </Link>
@@ -79,52 +84,38 @@ export default function Navbar({ onBookAppointment }: NavbarProps) {
 
         <button
           type="button"
-          className="relative z-[60] rounded-md p-2 text-white/80 transition hover:bg-white/5 hover:text-white md:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
+          className="flex rounded-lg p-2 text-white transition-all hover:bg-white/10 md:hidden"
+          onClick={() => setIsOpen((open) => !open)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+          aria-controls="mobile-nav"
         >
-          {open ? <X size={22} strokeWidth={1.75} /> : <Menu size={22} strokeWidth={1.75} />}
+          {isOpen ? <X size={22} strokeWidth={1.75} /> : <Menu size={22} strokeWidth={1.75} />}
         </button>
       </div>
 
       <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black/70 md:hidden"
-            onClick={() => setOpen(false)}
+        {isOpen && (
+          <motion.nav
+            id="mobile-nav"
+            aria-label="Mobile"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute left-0 top-full z-50 flex w-full flex-col gap-4 border-b border-white/10 bg-[#080808]/95 px-6 py-6 backdrop-blur-xl md:hidden"
           >
-            <motion.aside
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 320, damping: 32 }}
-              onClick={(e) => e.stopPropagation()}
-              className="absolute right-0 top-0 flex h-full w-[78%] max-w-sm flex-col border-l border-white/10 bg-[#050505]/95 px-8 pt-24 shadow-[-20px_0_60px_rgba(0,0,0,0.5)] backdrop-blur-xl"
-            >
-              <p className="mb-8 font-display text-[10px] tracking-[0.35em] text-vx-silver/50">
-                NAVIGATE
-              </p>
-              <div className="flex flex-col gap-6">
-                {NAV_LINKS.map((link, i) => (
-                  <motion.button
-                    key={link.href}
-                    type="button"
-                    initial={{ opacity: 0, x: 24 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.08 * i }}
-                    onClick={() => handleNav(link.href, link.hash)}
-                    className="text-left font-display text-lg font-semibold uppercase tracking-[0.22em] text-[#94A3B8] transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </motion.button>
-                ))}
-              </div>
-            </motion.aside>
-          </motion.div>
+            {NAV_LINKS.map((link) => (
+              <button
+                key={link.href}
+                type="button"
+                onClick={() => handleNav(link.href, link.hash)}
+                className={`text-left ${linkClassName}`}
+              >
+                {link.label}
+              </button>
+            ))}
+          </motion.nav>
         )}
       </AnimatePresence>
     </header>
