@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, Orbitron } from "next/font/google";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const inter = Inter({
@@ -43,6 +44,7 @@ export default function RootLayout({
         className={`${inter.variable} ${orbitron.variable} ${cormorant.variable} font-sans bg-[#faf9f6] text-neutral-900 antialiased`}
       >
         {children}
+        <Footer />
       </body>
     </html>
   );

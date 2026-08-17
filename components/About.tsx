@@ -17,9 +17,6 @@ export default function About() {
           the ordinary. Every chassis is numbered. Every surface is considered.
           Drive beyond.
         </p>
-        <p className="mt-10 font-display text-[10px] tracking-[0.4em] text-neutral-400">
-          © {new Date().getFullYear()} VELORIX MOTORS
-        </p>
       </div>
     </section>
   );
