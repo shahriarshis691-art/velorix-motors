@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Orbitron } from "next/font/google";
+import { Cormorant_Garamond, Inter, Orbitron } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,6 +13,13 @@ const orbitron = Orbitron({
   variable: "--font-orbitron",
   display: "swap",
   weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -33,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${orbitron.variable} font-sans bg-[#faf9f6] text-neutral-900 antialiased`}
+        className={`${inter.variable} ${orbitron.variable} ${cormorant.variable} font-sans bg-[#faf9f6] text-neutral-900 antialiased`}
       >
         {children}
       </body>

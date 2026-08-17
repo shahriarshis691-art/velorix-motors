@@ -24,6 +24,7 @@ const config: Config = {
       fontFamily: {
         display: ["var(--font-orbitron)", "sans-serif"],
         sans: ["var(--font-inter)", "sans-serif"],
+        serif: ["var(--font-cormorant)", "Georgia", "serif"],
       },
       letterSpacing: {
         mega: "0.45em",
