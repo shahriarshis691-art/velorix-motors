@@ -21,6 +21,8 @@ export default function VehicleCard({
   priority = false,
 }: VehicleCardProps) {
   const destination = href ?? `/vehicles/${vehicle.id}`;
+  const contain =
+    "coverFit" in vehicle && vehicle.coverFit === "contain";
 
   const body = (
     <>
@@ -33,9 +35,9 @@ export default function VehicleCard({
 
       <div
         className={`relative mt-3 mb-4 aspect-[16/10] w-full overflow-hidden ${
-          "coverFit" in vehicle && vehicle.coverFit === "contain"
-            ? "rounded-xl bg-[#e5e5e5]"
-            : "rounded-none bg-neutral-50"
+          contain
+            ? "rounded-xl border border-neutral-100 bg-white shadow-sm"
+            : "rounded-none bg-white"
         }`}
       >
         <Image
@@ -45,8 +47,8 @@ export default function VehicleCard({
           priority={priority}
           sizes="(max-width: 768px) 100vw, 768px"
           className={
-            "coverFit" in vehicle && vehicle.coverFit === "contain"
-              ? "h-full w-full object-contain object-center p-2 sm:p-3"
+            contain
+              ? "h-full w-full object-contain object-center p-4"
               : "h-full w-full object-cover object-center"
           }
         />

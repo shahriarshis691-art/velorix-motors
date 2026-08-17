@@ -45,7 +45,7 @@ export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
 
   return (
     <main className="bg-white">
-      <div className="mx-auto max-w-3xl px-4 pb-28 pt-20 sm:px-8 sm:pt-24 md:pb-24">
+      <div className="mx-auto max-w-3xl px-4 pb-28 pt-28 sm:px-8 sm:pt-32 md:pb-24">
         <Link
           href={backHref}
           className="mb-8 inline-flex min-h-11 items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-[#6B7280] transition-opacity hover:opacity-70"
