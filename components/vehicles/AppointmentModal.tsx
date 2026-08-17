@@ -64,7 +64,7 @@ export default function AppointmentModal({
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[80] flex items-center justify-center p-4"
+          className="fixed inset-0 z-[80] flex items-end justify-center p-0 md:items-center md:p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -84,7 +84,7 @@ export default function AppointmentModal({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 max-h-[90vh] w-full max-w-lg overflow-y-auto bg-white p-7 shadow-2xl sm:p-10"
+            className="relative z-10 max-h-[92vh] w-full max-w-lg overflow-y-auto bg-white p-6 shadow-2xl md:p-10"
           >
             <div className="mb-8 flex items-start justify-between gap-4">
               <div>

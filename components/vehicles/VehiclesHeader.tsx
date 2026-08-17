@@ -6,10 +6,10 @@ import MercedesStar from "@/components/vehicles/MercedesStar";
 export default function VehiclesHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-[100] bg-neutral-950">
-      <div className="relative mx-auto grid h-[72px] max-w-6xl grid-cols-3 items-center px-5 sm:h-20 sm:px-8">
+      <div className="relative mx-auto grid h-14 grid-cols-3 items-center px-4 md:h-[72px] md:max-w-6xl md:px-8">
         <Link
           href="/"
-          className="justify-self-start text-[10px] font-medium uppercase tracking-[0.28em] text-white/55 transition-colors hover:text-white"
+          className="justify-self-start text-[10px] font-medium uppercase tracking-widest text-white/55 transition-colors hover:text-white"
         >
           Velorix
         </Link>
@@ -17,12 +17,12 @@ export default function VehiclesHeader() {
         <Link
           href="/vehicles"
           className="justify-self-center text-white"
-          aria-label="Mercedes-Benz collection"
+          aria-label="Vehicle collection"
         >
-          <MercedesStar className="h-11 w-11 sm:h-12 sm:w-12" />
+          <MercedesStar className="h-9 w-9 md:h-11 md:w-11" />
         </Link>
 
-        <span className="justify-self-end text-[10px] font-medium uppercase tracking-[0.28em] text-white/40">
+        <span className="justify-self-end text-[10px] font-medium uppercase tracking-widest text-white/40">
           Atelier
         </span>
       </div>

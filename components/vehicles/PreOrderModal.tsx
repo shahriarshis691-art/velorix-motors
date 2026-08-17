@@ -7,12 +7,12 @@ import { Check, X } from "lucide-react";
 const fieldClass =
   "w-full border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-neutral-900";
 
-const DELIVERY_WINDOWS = [
-  "Immediate — in stock",
-  "4–8 weeks",
-  "This quarter",
-  "3–6 months",
-  "Flexible",
+const PREFERENCES = [
+  "In stock — standard specification",
+  "4–8 weeks — AMG Line",
+  "This quarter — Maybach Exclusive",
+  "3–6 months — custom commission",
+  "Flexible delivery",
 ];
 
 type PreOrderModalProps = {
@@ -53,7 +53,7 @@ export default function PreOrderModal({
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[80] flex items-center justify-center p-4"
+          className="fixed inset-0 z-[80] flex items-end justify-center p-0 md:items-center md:p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -73,7 +73,7 @@ export default function PreOrderModal({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 max-h-[90vh] w-full max-w-lg overflow-y-auto bg-white p-7 shadow-2xl sm:p-10"
+            className="relative z-10 max-h-[92vh] w-full max-w-lg overflow-y-auto bg-white p-6 shadow-2xl md:p-10"
           >
             <div className="mb-8 flex items-start justify-between gap-4">
               <div>
@@ -122,7 +122,7 @@ export default function PreOrderModal({
               <form onSubmit={handleSubmit} className="space-y-4">
                 <label className="block">
                   <span className="mb-1.5 block text-[11px] uppercase tracking-[0.2em] text-neutral-500">
-                    Full name
+                    Name
                   </span>
                   <input
                     name="fullName"
@@ -134,66 +134,53 @@ export default function PreOrderModal({
                   />
                 </label>
 
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <label className="block">
-                    <span className="mb-1.5 block text-[11px] uppercase tracking-[0.2em] text-neutral-500">
-                      Phone
-                    </span>
-                    <input
-                      name="phone"
-                      type="tel"
-                      required
-                      autoComplete="tel"
-                      placeholder="+880 …"
-                      className={fieldClass}
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="mb-1.5 block text-[11px] uppercase tracking-[0.2em] text-neutral-500">
-                      Email
-                    </span>
-                    <input
-                      name="email"
-                      type="email"
-                      required
-                      autoComplete="email"
-                      placeholder="you@atelier.com"
-                      className={fieldClass}
-                    />
-                  </label>
-                </div>
+                <label className="block">
+                  <span className="mb-1.5 block text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+                    Email
+                  </span>
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    placeholder="you@atelier.com"
+                    className={fieldClass}
+                  />
+                </label>
 
                 <label className="block">
                   <span className="mb-1.5 block text-[11px] uppercase tracking-[0.2em] text-neutral-500">
-                    Preferred delivery window
+                    Phone
+                  </span>
+                  <input
+                    name="phone"
+                    type="tel"
+                    required
+                    autoComplete="tel"
+                    placeholder="+880 …"
+                    className={fieldClass}
+                  />
+                </label>
+
+                <label className="block">
+                  <span className="mb-1.5 block text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+                    Preferred delivery / configuration
                   </span>
                   <select
-                    name="deliveryWindow"
+                    name="configuration"
                     required
                     defaultValue=""
                     className={fieldClass}
                   >
                     <option value="" disabled>
-                      Select a window
+                      Select a preference
                     </option>
-                    {DELIVERY_WINDOWS.map((window) => (
-                      <option key={window} value={window}>
-                        {window}
+                    {PREFERENCES.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
                       </option>
                     ))}
                   </select>
-                </label>
-
-                <label className="block">
-                  <span className="mb-1.5 block text-[11px] uppercase tracking-[0.2em] text-neutral-500">
-                    Notes
-                  </span>
-                  <textarea
-                    name="notes"
-                    rows={3}
-                    placeholder="Specification, colour, or allocation notes"
-                    className={`${fieldClass} resize-none`}
-                  />
                 </label>
 
                 <button

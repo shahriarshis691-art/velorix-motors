@@ -7,45 +7,32 @@ import ConciergeFab from "@/components/ConciergeFab";
 
 const CARS = [
   {
-    id: "mercedes",
-    name: "MERCEDES",
-    href: "/vehicles",
-    image:
-      "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1600&q=85",
-    alt: "Silver Mercedes-AMG GT with the three-pointed star",
-  },
-  {
     id: "honda",
     name: "HONDA",
-    href: "/models/honda",
     image: "/images/honda-civic-coast.png",
     alt: "Metallic crimson Honda Civic sedan on a coastal highway",
   },
   {
     id: "toyota",
     name: "TOYOTA",
-    href: "/models/toyota",
     image: "/images/toyota-harrier-coast.png",
     alt: "Pearl white Toyota Harrier SUV on a coastal highway",
   },
   {
     id: "bmw",
     name: "BMW",
-    href: "/models/bmw",
     image: "/images/bmw-coast.png",
     alt: "Gunmetal grey BMW sedan cruising a coastal highway",
   },
   {
     id: "nissan",
     name: "NISSAN",
-    href: "/models/nissan",
     image: "/images/nissan-z-coast.png",
     alt: "Metallic red Nissan Z on a coastal highway",
   },
   {
     id: "allion",
     name: "ALLION",
-    href: "/models/allion",
     image: "/images/toyota-allion-coast.png",
     alt: "Pearl white Toyota Allion sedan on a coastal highway",
   },
@@ -105,7 +92,7 @@ function CatalogPanel({
       transition={{ delay: index * 0.07, duration: 0.55 }}
     >
       <Link
-        href={car.href}
+        href={`/models/${car.id}`}
         className="group relative isolate block aspect-video w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition duration-500 hover:shadow-md"
         aria-label={`View ${car.name} models`}
       >
