@@ -53,11 +53,13 @@ export default function Navbar({ onBookAppointment }: NavbarProps) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b border-white/5 backdrop-blur-md transition-colors duration-300 ${
-        scrolled ? "bg-black/60" : "bg-black/40"
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        scrolled
+          ? "border-white/10 bg-black/50 backdrop-blur-md"
+          : "border-transparent bg-black/20 backdrop-blur-sm"
       }`}
     >
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-[72px] sm:px-8">
         <Link href="/" className="relative z-10" aria-label="VELORIX MOTORS home">
           <VelorixLogo size="sm" />
         </Link>
@@ -77,12 +79,12 @@ export default function Navbar({ onBookAppointment }: NavbarProps) {
 
         <button
           type="button"
-          className="relative z-[60] rounded-md p-2 text-vx-silver md:hidden"
+          className="relative z-[60] rounded-md p-2 text-white/80 transition hover:bg-white/5 hover:text-white md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={22} strokeWidth={1.75} /> : <Menu size={22} strokeWidth={1.75} />}
         </button>
       </div>
 

@@ -15,84 +15,76 @@ export default function Hero({
   return (
     <section
       id="top"
-      className="relative w-full overflow-hidden bg-[#050505]"
+      className="relative flex min-h-[550px] w-full items-center overflow-hidden bg-[#050505] sm:min-h-[620px] lg:min-h-[720px]"
     >
-      <div className="relative grid min-h-[600px] lg:block lg:min-h-[720px]">
-        <div className="relative order-2 h-[300px] w-full sm:h-[400px] lg:absolute lg:inset-0 lg:h-auto lg:min-h-[720px]">
-          <Image
-            src="/images/hero-night-drive.png"
-            alt="VELORIX MOTORS luxury sedan on a night city street"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-[68%_center] lg:object-[78%_center]"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent lg:block"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent lg:via-transparent lg:to-[#050505]/25"
-          />
-        </div>
+      <Image
+        src="/images/hero-night-drive.png"
+        alt="VELORIX MOTORS luxury sedan on a night city street"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-[70%_center] sm:object-right"
+      />
 
-        <div className="relative z-10 order-1 flex flex-col justify-center px-6 pb-8 pt-28 text-left md:pl-16 lg:min-h-[720px] lg:max-w-xl lg:pb-20 lg:pt-24">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 backdrop-blur-md">
-              <span
-                aria-hidden
-                className="h-4 w-4 shrink-0 rounded-[3px] bg-gradient-to-br from-vx-red via-white to-sky-500 shadow-[0_0_10px_rgba(56,189,248,0.45)]"
-              />
-              <span className="font-display text-[9px] font-semibold uppercase tracking-[0.18em] text-white/90 sm:text-[10px]">
-                Velorix Verified · 100% Auction Grade
-              </span>
-            </span>
+      <div
+        aria-hidden
+        className="absolute inset-0 z-[1] bg-gradient-to-r from-[#050505] via-[#050505]/85 to-transparent sm:via-[#050505]/70 sm:to-transparent"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 z-[1] bg-gradient-to-t from-[#050505] via-transparent to-transparent"
+      />
 
-            <p className="mt-6 font-display text-[11px] font-semibold uppercase tracking-[0.38em]">
-              <span className="metallic-text">VELORIX MOTORS</span>
-            </p>
+      <div className="relative z-10 flex w-full max-w-xl flex-col items-start px-5 py-12 pt-24 text-left sm:px-8 sm:pt-28 md:px-12 lg:px-16">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex w-full flex-col items-start"
+        >
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[10px] tracking-wider text-neutral-300 backdrop-blur-md sm:text-xs">
+            <span
+              aria-hidden
+              className="h-3.5 w-3.5 shrink-0 rounded-[3px] bg-gradient-to-br from-vx-red via-white to-[#0088ff]"
+            />
+            VELORIX VERIFIED | 100% AUCTION GRADE
+          </span>
 
-            <h1 className="mt-3 text-3xl font-light tracking-tight text-white md:text-5xl md:leading-[1.12]">
-              Drive Beyond with Premium Re-Conditioned Luxury
-            </h1>
-
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-neutral-300 md:text-[15px]">
-              Performance you can feel, with authentic Japan auction sheets,
-              verified mileage, and hybrid / EV efficiency — each lot inspected
-              to VELORIX atelier standard before it reaches the showroom.
-            </p>
-
-            <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-              <motion.button
-                type="button"
-                onClick={onViewCollections}
-                whileHover={{ y: -2, scale: 1.015 }}
-                whileTap={{ scale: 0.985 }}
-                className="rounded-full bg-[#1E90FF] px-7 py-3.5 font-display text-[11px] font-bold uppercase tracking-[0.18em] text-white shadow-[0_10px_28px_rgba(30,144,255,0.38)] transition hover:bg-[#3aa0ff]"
-              >
-                Explore Collection
-              </motion.button>
-              <motion.button
-                type="button"
-                onClick={onBookAppointment}
-                whileHover={{ y: -2, scale: 1.015 }}
-                whileTap={{ scale: 0.985 }}
-                className="rounded-full border border-white/25 bg-white/5 px-7 py-3.5 font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md transition hover:border-white/45 hover:bg-white/10"
-              >
-                Book Test Drive
-              </motion.button>
-            </div>
-          </motion.div>
-
-          <p className="mt-10 text-xs text-neutral-400 lg:absolute lg:bottom-8 lg:left-16 lg:mt-0">
-            Velorix Motors Official Selection • Genuine Auction Grade 4.5+ Verified
+          <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-400 sm:text-xs">
+            VELORIX MOTORS
           </p>
-        </div>
+
+          <h1 className="mb-4 text-2xl font-light leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-5xl">
+            Drive Beyond with Premium Re-Conditioned Luxury
+          </h1>
+
+          <p className="mb-6 max-w-md text-xs font-normal leading-relaxed text-neutral-300/90 sm:mb-8 sm:text-sm">
+            Performance you can feel, with authentic Japan auction sheets,
+            verified mileage, and hybrid / EV efficiency — each lot inspected
+            to VELORIX atelier standard before it reaches the showroom.
+          </p>
+
+          <div className="flex w-full flex-row flex-wrap items-center gap-3 sm:w-auto">
+            <button
+              type="button"
+              onClick={onViewCollections}
+              className="whitespace-nowrap rounded-full bg-[#0088ff] px-5 py-3 text-xs font-medium text-white shadow-[0_0_25px_rgba(0,136,255,0.4)] transition-all hover:bg-[#0077ee] sm:px-7 sm:text-sm"
+            >
+              EXPLORE COLLECTION
+            </button>
+            <button
+              type="button"
+              onClick={onBookAppointment}
+              className="whitespace-nowrap rounded-full border border-white/20 bg-transparent px-5 py-3 text-xs font-medium text-white backdrop-blur-sm transition-all hover:bg-white/10 sm:px-7 sm:text-sm"
+            >
+              BOOK TEST DRIVE
+            </button>
+          </div>
+        </motion.div>
+
+        <p className="mt-8 text-xs text-neutral-400">
+          Velorix Motors Official Selection • Genuine Auction Grade 4.5+ Verified
+        </p>
       </div>
     </section>
   );
