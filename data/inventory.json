@@ -1,0 +1,485 @@
+{
+  "toyota-corolla-axio-hybrid": {
+    "year": 2018,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 62000,
+    "fuelType": "Hybrid",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Gulshan — ready for viewing." }
+  },
+  "toyota-premio-f-ex": {
+    "year": 2017,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 48000,
+    "fuelType": "Petrol",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Banani — ready for viewing." }
+  },
+  "toyota-allion-a15": {
+    "year": 2018,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 55000,
+    "fuelType": "Petrol",
+    "status": "In Transit",
+    "shipment": {
+      "stage": "On vessel",
+      "vessel": "MOL Presence",
+      "eta": "2026-09-12",
+      "note": "Sea freight to Chattogram."
+    }
+  },
+  "toyota-corolla-fielder-hybrid": {
+    "year": 2019,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 71000,
+    "fuelType": "Hybrid",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Gulshan — ready for viewing." }
+  },
+  "toyota-aqua-hybrid": {
+    "year": 2018,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 58000,
+    "fuelType": "Hybrid",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Agrabad — ready for viewing." }
+  },
+  "toyota-vitz-f-safety": {
+    "year": 2019,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 42000,
+    "fuelType": "Petrol",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Gulshan — ready for viewing." }
+  },
+  "toyota-raize-z-turbo": {
+    "year": 2021,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 28000,
+    "fuelType": "Petrol",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Banani — ready for viewing." }
+  },
+  "toyota-yaris-cross-hybrid": {
+    "year": 2021,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 31000,
+    "fuelType": "Hybrid",
+    "status": "In Transit",
+    "shipment": {
+      "stage": "At Chattogram",
+      "eta": "2026-08-26",
+      "note": "Port clearance in progress."
+    }
+  },
+  "toyota-c-hr-hybrid": {
+    "year": 2019,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 45000,
+    "fuelType": "Hybrid",
+    "status": "In Transit",
+    "shipment": {
+      "stage": "On vessel",
+      "vessel": "NYK Helios",
+      "eta": "2026-09-04",
+      "note": "Sea freight to Chattogram."
+    }
+  },
+  "toyota-corolla-cross-hybrid": {
+    "year": 2022,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 18000,
+    "fuelType": "Hybrid",
+    "status": "Pre-Order",
+    "shipment": {
+      "stage": "Auction won",
+      "note": "Sheet approved — booking deposit holds the allocation."
+    }
+  },
+  "toyota-prius-hybrid-50": {
+    "year": 2018,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 67000,
+    "fuelType": "Hybrid",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Gulshan — ready for viewing." }
+  },
+  "toyota-sienta-hybrid": {
+    "year": 2019,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 52000,
+    "fuelType": "Hybrid",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Banani — ready for viewing." }
+  },
+  "toyota-noah-si-hybrid": {
+    "year": 2018,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 78000,
+    "fuelType": "Hybrid",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Gulshan — ready for viewing." }
+  },
+  "toyota-esquire-gi-hybrid": {
+    "year": 2017,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 82000,
+    "fuelType": "Hybrid",
+    "status": "Pre-Order",
+    "shipment": {
+      "stage": "Auction won",
+      "note": "Japan allocation — deposit before vessel cut-off."
+    }
+  },
+  "toyota-voxy-zs-kirameki": {
+    "year": 2018,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 74000,
+    "fuelType": "Hybrid",
+    "status": "In Transit",
+    "shipment": {
+      "stage": "On vessel",
+      "vessel": "K Line Orchid",
+      "eta": "2026-09-18",
+      "note": "Sea freight to Chattogram."
+    }
+  },
+  "toyota-harrier-g-leather": {
+    "year": 2019,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 39000,
+    "fuelType": "Petrol",
+    "status": "Pre-Order",
+    "shipment": {
+      "stage": "Auction won",
+      "note": "Leather package — deposit holds the lot."
+    }
+  },
+  "honda-grace-hybrid": {
+    "year": 2018,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 42000,
+    "fuelType": "Hybrid",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Banani — ready for viewing." }
+  },
+  "honda-vezel-hybrid": {
+    "year": 2018,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 48000,
+    "fuelType": "Hybrid",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Gulshan — ready for viewing." }
+  },
+  "honda-civic": {
+    "year": 2018,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 35000,
+    "fuelType": "Petrol",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Banani — ready for viewing." }
+  },
+  "honda-fit-hybrid": {
+    "year": 2017,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 52000,
+    "fuelType": "Hybrid",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Uttara — ready for viewing." }
+  },
+  "honda-city": {
+    "year": 2018,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 45000,
+    "fuelType": "Petrol",
+    "status": "In Transit",
+    "shipment": {
+      "stage": "On vessel",
+      "vessel": "NYK Atlas",
+      "eta": "2026-09-12",
+      "note": "Sea freight to Chattogram."
+    }
+  },
+  "honda-freed-hybrid": {
+    "year": 2018,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 58000,
+    "fuelType": "Hybrid",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Banani — family MPV on the floor." }
+  },
+  "honda-shuttle-hybrid": {
+    "year": 2017,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 61000,
+    "fuelType": "Hybrid",
+    "status": "In Transit",
+    "shipment": {
+      "stage": "On vessel",
+      "vessel": "MOL Presence",
+      "eta": "2026-09-08",
+      "note": "Sea freight to Chattogram."
+    }
+  },
+  "honda-insight-hybrid": {
+    "year": 2019,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 38000,
+    "fuelType": "Hybrid",
+    "status": "Pre-Order",
+    "shipment": {
+      "stage": "Auction won",
+      "note": "ZE4 Insight — deposit holds the lot."
+    }
+  },
+  "honda-civic-type-r": {
+    "year": 2021,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 22000,
+    "fuelType": "Petrol",
+    "status": "Pre-Order",
+    "shipment": {
+      "stage": "Auction won",
+      "note": "Rare allocation — booking deposit required."
+    }
+  },
+  "honda-accord-hybrid": {
+    "year": 2019,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 41000,
+    "fuelType": "Hybrid",
+    "status": "In Transit",
+    "shipment": {
+      "stage": "On vessel",
+      "vessel": "MOL Presence",
+      "eta": "2026-09-08",
+      "note": "Sea freight to Chattogram."
+    }
+  },
+  "honda-cr-v": {
+    "year": 2018,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 56000,
+    "fuelType": "Petrol",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Banani — ready for viewing." }
+  },
+  "bmw-3-series-318i": {
+    "year": 2018,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 45000,
+    "fuelType": "Petrol",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Gulshan — ready for viewing." }
+  },
+  "bmw-x1-sdrive": {
+    "year": 2019,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 38000,
+    "fuelType": "Petrol",
+    "status": "In Transit",
+    "shipment": {
+      "stage": "At Chattogram",
+      "eta": "2026-08-24",
+      "note": "Clearance, then Dhaka PDI."
+    }
+  },
+  "bmw-5-series-520i": {
+    "year": 2019,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 41000,
+    "fuelType": "Petrol",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Banani — M Sport 520i on the floor." }
+  },
+  "bmw-x3-xdrive": {
+    "year": 2018,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 43000,
+    "fuelType": "Petrol",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Gulshan — ready for viewing." }
+  },
+  "bmw-x5-xdrive": {
+    "year": 2019,
+    "grade": 4,
+    "interiorGrade": "A",
+    "mileageKm": 36000,
+    "fuelType": "Petrol",
+    "status": "In Transit",
+    "shipment": {
+      "stage": "On vessel",
+      "vessel": "MOL Presence",
+      "eta": "2026-09-18",
+      "note": "Sea freight to Chattogram."
+    }
+  },
+  "bmw-2-series-gran-coupe": {
+    "year": 2020,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 28000,
+    "fuelType": "Petrol",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Uttara — ready for viewing." }
+  },
+  "bmw-7-series-730li": {
+    "year": 2018,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 39000,
+    "fuelType": "Petrol",
+    "status": "Pre-Order",
+    "shipment": {
+      "stage": "Auction won",
+      "note": "Long-wheelbase 730Li — deposit holds the lot."
+    }
+  },
+  "bmw-x6-xdrive": {
+    "year": 2019,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 44000,
+    "fuelType": "Petrol",
+    "status": "In Transit",
+    "shipment": {
+      "stage": "On vessel",
+      "vessel": "NYK Atlas",
+      "eta": "2026-09-12",
+      "note": "Sea freight to Chattogram."
+    }
+  },
+  "bmw-x7-xdrive": {
+    "year": 2020,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 24000,
+    "fuelType": "Petrol",
+    "status": "Pre-Order",
+    "shipment": {
+      "stage": "Auction won",
+      "note": "Seven-seat X7 allocation — booking deposit required."
+    }
+  },
+  "nissan-versa-sedan": {
+    "year": 2020,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 35000,
+    "fuelType": "Petrol",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Agrabad — ready for viewing." }
+  },
+  "nissan-z-nismo": {
+    "year": 2023,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 8000,
+    "fuelType": "Petrol",
+    "status": "Pre-Order",
+    "shipment": {
+      "stage": "Auction won",
+      "note": "Low-km NISMO — deposit holds the bid."
+    }
+  },
+  "nissan-gt-r-nismo": {
+    "year": 2018,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 28000,
+    "fuelType": "Petrol",
+    "status": "Pre-Order",
+    "shipment": {
+      "stage": "Auction won",
+      "note": "Specialist allocation — concierge confirms duty before deposit."
+    }
+  },
+  "nissan-patrol-nismo": {
+    "year": 2019,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 44000,
+    "fuelType": "Petrol",
+    "status": "In Transit",
+    "shipment": {
+      "stage": "On vessel",
+      "vessel": "NYK Helios",
+      "eta": "2026-09-21",
+      "note": "Sea freight to Chattogram."
+    }
+  },
+  "hyundai-creta": {
+    "year": 2021,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 32000,
+    "fuelType": "Petrol",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Gulshan — ready for viewing." }
+  },
+  "hyundai-tucson": {
+    "year": 2020,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 36000,
+    "fuelType": "Petrol",
+    "status": "Available",
+    "shipment": { "stage": "Ready", "note": "Banani — ready for viewing." }
+  },
+  "hyundai-alcazar": {
+    "year": 2022,
+    "grade": 4,
+    "interiorGrade": "B",
+    "mileageKm": 24000,
+    "fuelType": "Petrol",
+    "status": "In Transit",
+    "shipment": {
+      "stage": "On vessel",
+      "eta": "2026-09-02",
+      "note": "Sea freight to Chattogram."
+    }
+  },
+  "hyundai-santa-fe": {
+    "year": 2021,
+    "grade": 4.5,
+    "interiorGrade": "A",
+    "mileageKm": 19000,
+    "fuelType": "Hybrid",
+    "status": "Pre-Order",
+    "shipment": {
+      "stage": "Auction won",
+      "note": "Flagship hybrid — deposit after sheet approval."
+    }
+  }
+}

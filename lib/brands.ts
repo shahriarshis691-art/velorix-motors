@@ -3,10 +3,10 @@ export const BRAND_SLUGS = [
   "nissan",
   "toyota",
   "honda",
-  "allion",
+  "hyundai",
 ] as const;
 
-export type BrandSlug = (typeof BRAND_SLUGS)[number];
+export type BrandSlug = (typeof BRAND_SLUGS)[number] | "allion";
 
 export type BrandMeta = {
   slug: BrandSlug;
@@ -22,7 +22,7 @@ export const BRANDS: BrandMeta[] = [
     slug: "bmw",
     name: "BMW",
     displayName: "BMW",
-    tagline: "Certified iX, X5 and M Sport inventory from Japan auctions.",
+    tagline: "3 Series, X1, 5 Series, X3 and X5 from Japan and UK auctions.",
     image: "/images/bmw-coast.png",
     accent: "#1C69D4",
   },
@@ -38,7 +38,7 @@ export const BRANDS: BrandMeta[] = [
     slug: "toyota",
     name: "Toyota",
     displayName: "TOYOTA",
-    tagline: "Harrier, Crown, RAV4, Allion, Premio, Prado and Noah from Japan auctions.",
+    tagline: "Axio, Premio, Allion, Aqua, Noah and Harrier from Japan auctions.",
     image: "/images/toyota-harrier-z-coast.png",
     accent: "#EB0A1E",
   },
@@ -46,17 +46,17 @@ export const BRANDS: BrandMeta[] = [
     slug: "honda",
     name: "Honda",
     displayName: "HONDA",
-    tagline: "Civic, Vezel, CR-V, Accord and ZR-V hybrids from Japan auctions.",
-    image: "/images/honda-civic-coast.png",
+    tagline: "Grace, Vezel, Civic, Fit and City from Japan auctions.",
+    image: "/images/honda-civic.jpg",
     accent: "#E40521",
   },
   {
-    slug: "allion",
-    name: "Toyota Allion",
-    displayName: "ALLION",
-    tagline: "Eight Japan-auction Allion trims — A15, A18 and A20 packages ready for private delivery.",
-    image: "/images/toyota-allion-coast.png",
-    accent: "#EB0A1E",
+    slug: "hyundai",
+    name: "Hyundai",
+    displayName: "HYUNDAI",
+    tagline: "Creta, Tucson, Alcazar and Santa Fe prepared for Dhaka delivery.",
+    image: "/images/hyundai-alcazar.jpg",
+    accent: "#002C5F",
   },
 ];
 

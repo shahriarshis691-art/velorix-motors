@@ -720,12 +720,17 @@ export const DEFAULT_FILTERS: VehicleFilters = {
 
 export const PRICE_RANGES = [
   { id: "all", label: "All prices" },
-  { id: "under-80", label: "Under 80 Lakh" },
-  { id: "80-150", label: "80 – 150 Lakh" },
-  { id: "150-plus", label: "150 Lakh +" },
+  { id: "under-30", label: "Under 30 Lakh" },
+  { id: "30-50", label: "30 – 50 Lakh" },
+  { id: "50-80", label: "50 – 80 Lakh" },
+  { id: "80-plus", label: "80 Lakh +" },
 ] as const;
 
 function inPriceRange(priceLakh: number, range: string) {
+  if (range === "under-30") return priceLakh < 30;
+  if (range === "30-50") return priceLakh >= 30 && priceLakh < 50;
+  if (range === "50-80") return priceLakh >= 50 && priceLakh < 80;
+  if (range === "80-plus") return priceLakh >= 80;
   if (range === "under-80") return priceLakh < 80;
   if (range === "80-150") return priceLakh >= 80 && priceLakh <= 150;
   if (range === "150-plus") return priceLakh > 150;

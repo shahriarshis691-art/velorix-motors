@@ -13,6 +13,8 @@ export type CatalogVehicle =
   | HyundaiVehicle
   | LuxuryVehicle;
 
+export function getBrandCatalogVehicles(): CatalogVehicle[];
+
 export function getCatalogVehicles(): CatalogVehicle[];
 
 export function getVehicleById(id: string): CatalogVehicle | undefined;

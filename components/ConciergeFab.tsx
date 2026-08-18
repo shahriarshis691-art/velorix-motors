@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
+import { whatsappUrl } from "@/lib/site";
 
 type ConciergeFabProps = {
   onBookAppointment: () => void;
@@ -25,7 +26,7 @@ export default function ConciergeFab({ onBookAppointment }: ConciergeFabProps) {
               ATELIER CONCIERGE
             </p>
             <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-              Enquire about BMW, Nissan, Toyota, Honda, or Allion availability.
+              Enquire about Toyota, Honda, BMW, Nissan or Hyundai availability.
             </p>
             <button
               type="button"
@@ -37,6 +38,17 @@ export default function ConciergeFab({ onBookAppointment }: ConciergeFabProps) {
             >
               Book a viewing
             </button>
+            <a
+              href={whatsappUrl(
+                "Hello VELORIX — I would like to enquire about Japan-import stock.",
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="mt-2 flex min-h-11 w-full items-center justify-center rounded-full border border-neutral-200 px-3 py-2 font-display text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-900 transition hover:bg-neutral-50"
+            >
+              WhatsApp concierge
+            </a>
           </motion.div>
         )}
       </AnimatePresence>

@@ -5,13 +5,17 @@ export type BmwVehicle = {
   title: string;
   tagline: string;
   coverImage: string;
+  coverFit?: "cover" | "contain";
   galleryImages: string[];
   specs: {
     power: string;
-    acceleration: string;
-    topSpeed: string;
+    acceleration?: string;
+    topSpeed?: string;
+    mileage?: string;
     engine: string;
-    drivetrain: string;
+    transmission?: string;
+    drivetrain?: string;
+    seating?: string;
   };
   price: string;
 };

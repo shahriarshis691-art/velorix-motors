@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import VehicleDetailView from "@/components/vehicles/VehicleDetailView";
-import { getVehicleById, getVehicleIds } from "@/src/data/catalog";
+import { getVehicleIds } from "@/src/data/catalog";
+import { getInventoryById } from "@/lib/inventory-store";
+
+export const dynamic = "force-dynamic";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -13,7 +16,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const vehicle = getVehicleById(id);
+  const vehicle = getInventoryById(id);
   if (!vehicle) {
     return { title: "Vehicle — VELORIX MOTORS" };
   }
@@ -25,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function VehicleDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const vehicle = getVehicleById(id);
+  const vehicle = getInventoryById(id);
   if (!vehicle) notFound();
 
   return <VehicleDetailView vehicle={vehicle} />;

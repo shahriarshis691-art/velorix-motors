@@ -23,9 +23,14 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-orbitron)", "sans-serif"],
-        sans: ["var(--font-inter)", "sans-serif"],
-        serif: ["var(--font-cormorant)", "Georgia", "serif"],
+        display: ["var(--font-orbitron)", "var(--font-bengali)", "sans-serif"],
+        sans: ["var(--font-inter)", "var(--font-bengali)", "sans-serif"],
+        serif: [
+          "var(--font-cormorant)",
+          "var(--font-bengali)",
+          "Georgia",
+          "serif",
+        ],
       },
       letterSpacing: {
         mega: "0.45em",

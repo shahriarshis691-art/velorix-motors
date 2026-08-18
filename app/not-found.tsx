@@ -10,7 +10,7 @@ export default function NotFound() {
         <span className="metallic-text">PAGE NOT FOUND</span>
       </h1>
       <p className="mt-4 max-w-md text-sm text-neutral-600">
-        That model gallery is not in the current VELORIX inventory.
+        That page is not in the current VELORIX inventory.
       </p>
       <Link
         href="/"

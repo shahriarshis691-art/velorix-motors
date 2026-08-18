@@ -8,11 +8,14 @@ import VehicleCard from "@/components/vehicles/VehicleCard";
 import VehicleGallery from "@/components/vehicles/VehicleGallery";
 import PreOrderModal from "@/components/vehicles/PreOrderModal";
 import AppointmentModal from "@/components/vehicles/AppointmentModal";
-import type { CatalogVehicle } from "@/src/data/catalog";
-import { formatBDT } from "@/src/utils/formatters";
+import EmiCalculator from "@/components/vehicles/EmiCalculator";
+import type { InventoryVehicle } from "@/lib/inventory";
+import { formatBDT, formatTaka } from "@/src/utils/formatters";
+import { depositAmount } from "@/lib/inventory";
+import { vehicleEnquireMessage, whatsappUrl } from "@/lib/site";
 
 type VehicleDetailViewProps = {
-  vehicle: CatalogVehicle;
+  vehicle: InventoryVehicle;
 };
 
 const SPEC_ITEMS = [
@@ -30,8 +33,14 @@ export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
   const [preOrderOpen, setPreOrderOpen] = useState(false);
   const [appointmentOpen, setAppointmentOpen] = useState(false);
   const brand = "brand" in vehicle ? vehicle.brand : undefined;
-  const status = "status" in vehicle ? vehicle.status : undefined;
-  const highlights = "highlights" in vehicle ? vehicle.highlights : undefined;
+  const highlights =
+    "highlights" in vehicle && Array.isArray(vehicle.highlights)
+      ? vehicle.highlights
+      : undefined;
+  const status = vehicle.status;
+  const enquireHref = whatsappUrl(
+    vehicleEnquireMessage(vehicle.title, formatBDT(vehicle.price)),
+  );
   const brandHrefs: Record<string, string> = {
     Honda: "/brands/honda",
     Toyota: "/brands/toyota",
@@ -47,7 +56,7 @@ export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
 
   return (
     <main className="bg-white">
-      <div className="mx-auto max-w-3xl px-4 pb-28 pt-28 sm:px-8 sm:pt-32 md:pb-24">
+      <div className="mx-auto max-w-3xl px-4 pb-36 pt-28 sm:px-8 sm:pt-32 md:pb-28">
         <Link
           href={backHref}
           className="mb-8 inline-flex min-h-11 items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-[#6B7280] transition-opacity hover:opacity-70"
@@ -73,12 +82,23 @@ export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
           <p className="font-serif text-xl font-medium text-[#111827] sm:text-2xl">
             {formatBDT(vehicle.price)}
           </p>
-          {status && (
-            <p className="text-xs uppercase tracking-[0.2em] text-[#6B7280]">
-              {status}
-            </p>
-          )}
+          <p className="text-xs uppercase tracking-[0.2em] text-[#6B7280]">
+            {status}
+          </p>
         </div>
+        <p className="mt-2 text-sm text-neutral-500">
+          {vehicle.year} · Grade {vehicle.grade.toFixed(1)} ·{" "}
+          {vehicle.mileageKm.toLocaleString("en-IN")} km · {vehicle.shipment.stage}
+        </p>
+
+        <a
+          href={enquireHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex min-h-11 items-center text-xs font-medium uppercase tracking-[0.2em] text-[#111827] transition-opacity hover:opacity-70"
+        >
+          Enquire on WhatsApp →
+        </a>
 
         <VehicleGallery images={vehicle.galleryImages} title={vehicle.title} />
 
@@ -103,6 +123,34 @@ export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
             ))}
           </dl>
 
+          <dl className="mt-px grid grid-cols-2 gap-px overflow-hidden border-x border-b border-neutral-200 bg-neutral-200">
+            {[
+              { label: "Year", value: String(vehicle.year) },
+              { label: "Auction grade", value: vehicle.grade.toFixed(1) },
+              {
+                label: "Kilometres",
+                value: `${vehicle.mileageKm.toLocaleString("en-IN")} km`,
+              },
+              { label: "Fuel", value: vehicle.fuelType },
+              { label: "Interior", value: vehicle.interiorGrade },
+              { label: "Shipment", value: vehicle.shipment.stage },
+            ].map((row) => (
+              <div key={row.label} className="bg-white px-4 py-4 sm:px-5 sm:py-5">
+                <dt className="text-[10px] uppercase tracking-[0.2em] text-[#6B7280]">
+                  {row.label}
+                </dt>
+                <dd className="mt-1.5 font-serif text-base font-medium leading-snug text-[#111827] sm:text-lg">
+                  {row.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-4 text-sm leading-relaxed text-neutral-600">
+            {vehicle.shipment.note}
+            {vehicle.shipment.vessel ? ` · ${vehicle.shipment.vessel}` : ""}
+            {vehicle.shipment.eta ? ` · ETA ${vehicle.shipment.eta}` : ""}
+          </p>
+
           {highlights && highlights.length > 0 && (
             <ul className="mt-8 space-y-3">
               {highlights.map((item) => (
@@ -118,13 +166,15 @@ export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
           )}
         </section>
 
+        <EmiCalculator price={vehicle.price} />
+
         <section className="mt-12 hidden gap-3 md:flex">
           <button
             type="button"
             onClick={() => setPreOrderOpen(true)}
             className="min-h-12 flex-1 bg-[#111827] px-6 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-white transition hover:opacity-90"
           >
-            Pre-Order
+            Pre-Order · {formatTaka(depositAmount())}
           </button>
           <button
             type="button"
@@ -143,7 +193,7 @@ export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
             onClick={() => setPreOrderOpen(true)}
             className="min-h-12 flex-1 bg-[#111827] px-4 text-xs font-medium uppercase tracking-[0.2em] text-white"
           >
-            Pre-Order
+            Pre-Order · {formatTaka(depositAmount())}
           </button>
           <button
             type="button"
@@ -158,6 +208,7 @@ export default function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
       <PreOrderModal
         open={preOrderOpen}
         onClose={() => setPreOrderOpen(false)}
+        vehicleId={vehicle.id}
         vehicleTitle={vehicle.title}
       />
       <AppointmentModal

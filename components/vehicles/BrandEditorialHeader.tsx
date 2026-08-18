@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import LanguageToggle from "@/components/i18n/LanguageToggle";
 
 type BrandEditorialHeaderProps = {
   brand: string;
@@ -26,9 +27,9 @@ export default function BrandEditorialHeader({
         >
           {brand}
         </Link>
-        <span className="justify-self-end text-[10px] font-medium uppercase tracking-[0.2em] text-white/40">
-          Atelier
-        </span>
+        <div className="justify-self-end">
+          <LanguageToggle tone="paper" />
+        </div>
       </div>
     </header>
   );

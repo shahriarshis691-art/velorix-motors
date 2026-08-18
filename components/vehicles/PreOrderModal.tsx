@@ -1,36 +1,49 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, X } from "lucide-react";
+import { formValue, submitLead } from "@/lib/leads";
+import { depositAmount } from "@/lib/inventory";
+import { formatTaka } from "@/src/utils/formatters";
+import { paymentLabel } from "@/lib/site";
+import type { PaymentMethod } from "@/lib/inventory";
 
 const fieldClass =
   "w-full border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-neutral-900";
 
-const PREFERENCES = [
-  "In stock — standard specification",
-  "4–8 weeks — AMG Line",
-  "This quarter — Maybach Exclusive",
-  "3–6 months — custom commission",
-  "Flexible delivery",
+const METHODS: { id: PaymentMethod; label: string }[] = [
+  { id: "bkash", label: "bKash" },
+  { id: "nagad", label: "Nagad" },
+  { id: "bank", label: "Bank transfer" },
+  { id: "card", label: "Card" },
 ];
 
 type PreOrderModalProps = {
   open: boolean;
   onClose: () => void;
+  vehicleId: string;
   vehicleTitle: string;
 };
 
 export default function PreOrderModal({
   open,
   onClose,
+  vehicleId,
   vehicleTitle,
 }: PreOrderModalProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [code, setCode] = useState("");
+  const [method, setMethod] = useState<PaymentMethod>("bkash");
+  const amount = formatTaka(depositAmount());
 
   useEffect(() => {
     if (!open) {
       setSubmitted(false);
+      setSending(false);
+      setCode("");
       return;
     }
     const onKey = (event: KeyboardEvent) => {
@@ -44,8 +57,58 @@ export default function PreOrderModal({
     };
   }, [open, onClose]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const fullName = formValue(data, "fullName");
+    const email = formValue(data, "email");
+    const phone = formValue(data, "phone");
+    const pay = formValue(data, "method") as PaymentMethod;
+
+    setSending(true);
+    const response = await fetch("/api/reservations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        vehicleId,
+        name: fullName,
+        phone,
+        email,
+        method: pay,
+      }),
+    });
+    const payload = (await response.json()) as {
+      reservation?: { code: string; method: PaymentMethod };
+      error?: string;
+    };
+    if (!response.ok || !payload.reservation) {
+      setSending(false);
+      return;
+    }
+
+    setCode(payload.reservation.code);
+    setMethod(payload.reservation.method);
+    await submitLead({
+      type: "pre-order",
+      fields: {
+        fullName,
+        email,
+        phone,
+        vehicle: vehicleTitle,
+        code: payload.reservation.code,
+        method: pay,
+      },
+      message: [
+        "VELORIX booking deposit",
+        `Code: ${payload.reservation.code}`,
+        `Vehicle: ${vehicleTitle}`,
+        `Deposit: ${amount} via ${paymentLabel(pay)}`,
+        `Name: ${fullName}`,
+        `Phone: ${phone}`,
+        `Email: ${email}`,
+      ].join("\n"),
+    });
+    setSending(false);
     setSubmitted(true);
   };
 
@@ -78,7 +141,7 @@ export default function PreOrderModal({
             <div className="mb-8 flex items-start justify-between gap-4">
               <div>
                 <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-neutral-400">
-                  Pre-Order
+                  Booking deposit
                 </p>
                 <h2
                   id="preorder-title"
@@ -86,7 +149,9 @@ export default function PreOrderModal({
                 >
                   Reserve this vehicle
                 </h2>
-                <p className="mt-2 text-sm text-neutral-500">{vehicleTitle}</p>
+                <p className="mt-2 text-sm text-neutral-500">
+                  {vehicleTitle} · {amount}
+                </p>
               </div>
               <button
                 type="button"
@@ -99,24 +164,23 @@ export default function PreOrderModal({
             </div>
 
             {submitted ? (
-              <div className="py-10 text-center">
+              <div className="py-6 text-center">
                 <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center border border-neutral-200 text-neutral-900">
                   <Check size={20} strokeWidth={1.5} />
                 </div>
                 <p className="font-serif text-2xl font-medium text-neutral-900">
-                  Request received
+                  {code}
                 </p>
                 <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-neutral-500">
-                  A VELORIX concierge will confirm allocation and delivery for
-                  your {vehicleTitle}.
+                  Send {amount} to {paymentLabel(method)}. WhatsApp is opening
+                  with this code. A concierge confirms when the deposit lands.
                 </p>
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="mt-8 w-full bg-neutral-950 px-5 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-white transition hover:bg-neutral-800"
+                <Link
+                  href={`/reservation/${code}`}
+                  className="mt-8 inline-flex min-h-11 w-full items-center justify-center bg-neutral-950 px-5 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-white transition hover:bg-neutral-800"
                 >
-                  Close
-                </button>
+                  Track this car →
+                </Link>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -133,7 +197,6 @@ export default function PreOrderModal({
                     className={fieldClass}
                   />
                 </label>
-
                 <label className="block">
                   <span className="mb-1.5 block text-[11px] uppercase tracking-[0.2em] text-neutral-500">
                     Email
@@ -143,11 +206,10 @@ export default function PreOrderModal({
                     type="email"
                     required
                     autoComplete="email"
-                    placeholder="you@atelier.com"
+                    placeholder="you@email.com"
                     className={fieldClass}
                   />
                 </label>
-
                 <label className="block">
                   <span className="mb-1.5 block text-[11px] uppercase tracking-[0.2em] text-neutral-500">
                     Phone
@@ -161,33 +223,29 @@ export default function PreOrderModal({
                     className={fieldClass}
                   />
                 </label>
-
                 <label className="block">
                   <span className="mb-1.5 block text-[11px] uppercase tracking-[0.2em] text-neutral-500">
-                    Preferred delivery / configuration
+                    Pay deposit with
                   </span>
                   <select
-                    name="configuration"
+                    name="method"
                     required
-                    defaultValue=""
+                    defaultValue="bkash"
                     className={fieldClass}
                   >
-                    <option value="" disabled>
-                      Select a preference
-                    </option>
-                    {PREFERENCES.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
+                    {METHODS.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.label} · {amount}
                       </option>
                     ))}
                   </select>
                 </label>
-
                 <button
                   type="submit"
-                  className="mt-2 w-full bg-neutral-950 px-5 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-white transition hover:bg-neutral-800"
+                  disabled={sending}
+                  className="mt-2 w-full bg-neutral-950 px-5 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-white transition hover:bg-neutral-800 disabled:opacity-60"
                 >
-                  Confirm pre-order
+                  {sending ? "Opening WhatsApp…" : `Reserve · ${amount}`}
                 </button>
               </form>
             )}

@@ -16,6 +16,10 @@ const brandVehicles = [
 
 assertUniqueBrandImages(brandVehicles);
 
+export function getBrandCatalogVehicles() {
+  return brandVehicles;
+}
+
 export function getCatalogVehicles() {
   return [...brandVehicles, ...vehiclesData];
 }

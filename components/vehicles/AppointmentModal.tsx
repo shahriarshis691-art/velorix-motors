@@ -3,17 +3,11 @@
 import { FormEvent, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, X } from "lucide-react";
+import { formValue, submitLead } from "@/lib/leads";
+import { SHOWROOM_LABELS } from "@/lib/site";
 
 const fieldClass =
   "w-full border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-neutral-900";
-
-const SHOWROOMS = [
-  "Dhaka — Gulshan Mercedes Atelier",
-  "Dhaka — Banani Pavilion",
-  "Chattogram — Agrabad Gallery",
-  "Dubai — Al Quoz Atelier",
-  "London — Mayfair Pavilion",
-];
 
 const TIME_SLOTS = ["10:00", "11:30", "13:00", "14:30", "16:00", "17:30"];
 
@@ -29,6 +23,7 @@ export default function AppointmentModal({
   vehicleTitle,
 }: AppointmentModalProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
   const [slot, setSlot] = useState("");
   const [slotError, setSlotError] = useState(false);
   const minDate = new Date().toISOString().slice(0, 10);
@@ -36,6 +31,7 @@ export default function AppointmentModal({
   useEffect(() => {
     if (!open) {
       setSubmitted(false);
+      setSending(false);
       setSlot("");
       setSlotError(false);
       return;
@@ -51,12 +47,42 @@ export default function AppointmentModal({
     };
   }, [open, onClose]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!slot) {
       setSlotError(true);
       return;
     }
+    const data = new FormData(event.currentTarget);
+    const date = formValue(data, "date");
+    const showroom = formValue(data, "showroom");
+    const fullName = formValue(data, "fullName");
+    const phone = formValue(data, "phone");
+    const email = formValue(data, "email");
+
+    setSending(true);
+    await submitLead({
+      type: "appointment",
+      fields: {
+        date,
+        time: slot,
+        showroom,
+        fullName,
+        phone,
+        email,
+        vehicle: vehicleTitle,
+      },
+      message: [
+        "VELORIX Appointment",
+        `Vehicle: ${vehicleTitle}`,
+        `Name: ${fullName}`,
+        `Phone: ${phone}`,
+        `Email: ${email}`,
+        `Showroom: ${showroom}`,
+        `Date: ${date} ${slot}`,
+      ].join("\n"),
+    });
+    setSending(false);
     setSubmitted(true);
   };
 
@@ -115,11 +141,11 @@ export default function AppointmentModal({
                   <Check size={20} strokeWidth={1.5} />
                 </div>
                 <p className="font-serif text-2xl font-medium text-neutral-900">
-                  Appointment requested
+                  WhatsApp is opening
                 </p>
                 <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-neutral-500">
-                  We will confirm your showroom slot for the {vehicleTitle}{" "}
-                  shortly.
+                  Your viewing request for the {vehicleTitle} is in the chat.
+                  We will confirm the showroom slot shortly.
                 </p>
                 <button
                   type="button"
@@ -188,7 +214,7 @@ export default function AppointmentModal({
                     <option value="" disabled>
                       Select a dealership
                     </option>
-                    {SHOWROOMS.map((showroom) => (
+                    {SHOWROOM_LABELS.map((showroom) => (
                       <option key={showroom} value={showroom}>
                         {showroom}
                       </option>
@@ -233,7 +259,7 @@ export default function AppointmentModal({
                       type="email"
                       required
                       autoComplete="email"
-                      placeholder="you@atelier.com"
+                      placeholder="you@email.com"
                       className={fieldClass}
                     />
                   </label>
@@ -241,9 +267,10 @@ export default function AppointmentModal({
 
                 <button
                   type="submit"
-                  className="mt-2 w-full border border-neutral-900 bg-white px-5 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-neutral-900 transition hover:bg-neutral-950 hover:text-white"
+                  disabled={sending}
+                  className="mt-2 w-full border border-neutral-900 bg-white px-5 py-3.5 text-[11px] font-medium uppercase tracking-[0.24em] text-neutral-900 transition hover:bg-neutral-950 hover:text-white disabled:opacity-60"
                 >
-                  Confirm appointment
+                  {sending ? "Opening WhatsApp…" : "Send on WhatsApp"}
                 </button>
               </form>
             )}

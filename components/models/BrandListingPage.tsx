@@ -2,13 +2,13 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import ListingHero from "@/components/ListingHero";
 import TestDriveModal from "@/components/TestDriveModal";
 import ListingToolbar from "@/components/models/ListingToolbar";
 import VehicleCard from "@/components/models/VehicleCard";
-import VehicleDetailsModal from "@/components/models/VehicleDetailsModal";
 import type { BrandMeta } from "@/lib/brands";
 import {
   DEFAULT_FILTERS,
@@ -27,8 +27,8 @@ type BrandListingPageProps = {
 };
 
 export default function BrandListingPage({ brand, cars }: BrandListingPageProps) {
+  const router = useRouter();
   const [filters, setFilters] = useState<VehicleFilters>(DEFAULT_FILTERS);
-  const [details, setDetails] = useState<Vehicle | null>(null);
   const [appointmentOpen, setAppointmentOpen] = useState(false);
   const [prefillModel, setPrefillModel] = useState<string>();
   const [prefillSerial, setPrefillSerial] = useState<string>();
@@ -39,7 +39,6 @@ export default function BrandListingPage({ brand, cars }: BrandListingPageProps)
   const fuels = useMemo(() => uniqueFuels(cars), [cars]);
 
   const openTestDrive = (car?: Vehicle) => {
-    setDetails(null);
     if (car) {
       setPrefillModel(formatVehicleModel(car));
       setPrefillSerial(car.id.toUpperCase());
@@ -51,7 +50,7 @@ export default function BrandListingPage({ brand, cars }: BrandListingPageProps)
   };
 
   const handleDetails = (car: Vehicle) => {
-    setDetails(car);
+    router.push(`/vehicles/${car.id}`);
   };
 
   return (
@@ -132,11 +131,6 @@ export default function BrandListingPage({ brand, cars }: BrandListingPageProps)
         </div>
       </section>
 
-      <VehicleDetailsModal
-        car={details}
-        onClose={() => setDetails(null)}
-        onBook={openTestDrive}
-      />
       <TestDriveModal
         open={appointmentOpen}
         onClose={() => setAppointmentOpen(false)}

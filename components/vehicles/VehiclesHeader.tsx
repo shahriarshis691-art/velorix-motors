@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import MercedesStar from "@/components/vehicles/MercedesStar";
+import LanguageToggle from "@/components/i18n/LanguageToggle";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 
 const BRAND_HEADERS = [
   { prefix: "/vehicles/honda", label: "Honda", href: "/brands/honda" },
@@ -15,6 +17,7 @@ const BRAND_HEADERS = [
 export default function VehiclesHeader() {
   const pathname = usePathname();
   const brand = BRAND_HEADERS.find((item) => pathname.startsWith(item.prefix));
+  const { t } = useLocale();
 
   return (
     <header className="fixed inset-x-0 top-0 z-[100] bg-neutral-950">
@@ -33,6 +36,13 @@ export default function VehiclesHeader() {
           >
             {brand.label}
           </Link>
+        ) : pathname === "/vehicles" ? (
+          <Link
+            href="/vehicles"
+            className="justify-self-center text-xs font-medium uppercase tracking-[0.28em] text-white"
+          >
+            {t.nav.inventory}
+          </Link>
         ) : (
           <Link
             href="/vehicles"
@@ -43,9 +53,9 @@ export default function VehiclesHeader() {
           </Link>
         )}
 
-        <span className="justify-self-end text-[10px] font-medium uppercase tracking-[0.2em] text-white/40">
-          Atelier
-        </span>
+        <div className="justify-self-end">
+          <LanguageToggle tone="paper" />
+        </div>
       </div>
     </header>
   );

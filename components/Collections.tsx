@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ConciergeFab from "@/components/ConciergeFab";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 
 const CARS = [
   {
@@ -63,6 +64,8 @@ type CollectionsProps = {
 };
 
 export default function Collections({ onBookAppointment }: CollectionsProps) {
+  const { t } = useLocale();
+
   return (
     <section
       id="collections"
@@ -72,14 +75,14 @@ export default function Collections({ onBookAppointment }: CollectionsProps) {
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
             <p className="font-display text-[11px] tracking-[0.4em] text-neutral-500">
-              THE GARAGE
+              {t.home.garage}
             </p>
             <h2 className="mt-2 font-display text-3xl font-bold tracking-[0.14em] text-neutral-900 sm:text-4xl">
-              <span className="metallic-text">COLLECTIONS</span>
+              <span className="metallic-text">{t.home.collections}</span>
             </h2>
           </div>
           <p className="hidden max-w-sm text-right text-xs leading-relaxed text-neutral-500 sm:block">
-            Coastal signatures. Open a marque to inspect re-conditioned stock.
+            {t.home.collectionsLead}
           </p>
         </div>
 

@@ -4,15 +4,9 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CalendarClock, Car, Hash, MapPin, Phone, User, X } from "lucide-react";
 import BrushedMetalButton from "@/components/ui/BrushedMetalButton";
-import { getModelSelectOptions } from "@/lib/cars";
-
-const SHOWROOMS = [
-  "Dhaka — Gulshan Atelier",
-  "Dhaka — Banani Pavilion",
-  "Chattogram — Agrabad Gallery",
-  "Dubai — Al Quoz Atelier",
-  "London — Mayfair Pavilion",
-];
+import { formValue, submitLead } from "@/lib/leads";
+import { SHOWROOM_LABELS } from "@/lib/site";
+import { getBrandCatalogVehicles } from "@/src/data/catalog";
 
 type TestDriveModalProps = {
   open: boolean;
@@ -31,8 +25,9 @@ export default function TestDriveModal({
   prefillSerial,
 }: TestDriveModalProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
   const models = useMemo(() => {
-    const options = getModelSelectOptions();
+    const options = getBrandCatalogVehicles().map((vehicle) => vehicle.title);
     if (prefillModel && !options.includes(prefillModel)) {
       return [prefillModel, ...options];
     }
@@ -42,6 +37,7 @@ export default function TestDriveModal({
   useEffect(() => {
     if (!open) {
       setSubmitted(false);
+      setSending(false);
       return;
     }
     const onKey = (e: KeyboardEvent) => {
@@ -55,8 +51,34 @@ export default function TestDriveModal({
     };
   }, [open, onClose]);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const model = formValue(data, "model");
+    const date = formValue(data, "date");
+    const time = formValue(data, "time");
+    const showroom = formValue(data, "showroom");
+    const name = formValue(data, "name");
+    const phone = formValue(data, "phone");
+    const serial = formValue(data, "serial");
+
+    setSending(true);
+    await submitLead({
+      type: "test-drive",
+      fields: { model, date, time, showroom, name, phone, serial },
+      message: [
+        "VELORIX Test Drive",
+        `Model: ${model}`,
+        `Name: ${name}`,
+        `Phone: ${phone}`,
+        `Showroom: ${showroom}`,
+        `Date: ${date} ${time}`,
+        serial ? `Car ID: ${serial}` : "",
+      ]
+        .filter(Boolean)
+        .join("\n"),
+    });
+    setSending(false);
     setSubmitted(true);
   };
 
@@ -114,11 +136,11 @@ export default function TestDriveModal({
                   <Car size={22} />
                 </div>
                 <p className="font-display text-lg tracking-[0.14em] text-neutral-900">
-                  REQUEST RECEIVED
+                  WHATSAPP IS OPENING
                 </p>
                 <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-neutral-600">
-                  A VELORIX concierge will confirm your showroom appointment
-                  shortly. Drive beyond.
+                  Your test-drive request is in the chat. A VELORIX concierge
+                  will confirm the showroom slot.
                 </p>
                 <div className="mt-8">
                   <BrushedMetalButton onClick={onClose} className="w-full">
@@ -181,7 +203,7 @@ export default function TestDriveModal({
                     <option value="" disabled>
                       Select a location
                     </option>
-                    {SHOWROOMS.map((s) => (
+                    {SHOWROOM_LABELS.map((s) => (
                       <option key={s} value={s}>
                         {s}
                       </option>
@@ -210,7 +232,7 @@ export default function TestDriveModal({
                     name="phone"
                     type="tel"
                     required
-                    placeholder="+1 000 000 0000"
+                    placeholder="+880 …"
                     className={fieldClass}
                   />
                 </label>
@@ -229,8 +251,12 @@ export default function TestDriveModal({
                 </label>
 
                 <div className="pt-2">
-                  <BrushedMetalButton type="submit" className="w-full min-h-[52px]">
-                    Submit Appointment
+                  <BrushedMetalButton
+                    type="submit"
+                    disabled={sending}
+                    className="w-full min-h-[52px]"
+                  >
+                    {sending ? "Opening WhatsApp…" : "Send on WhatsApp"}
                   </BrushedMetalButton>
                 </div>
               </form>

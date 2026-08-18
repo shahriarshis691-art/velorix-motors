@@ -4,9 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { CatalogVehicle } from "@/src/data/catalog";
+import { getStockStatus } from "@/lib/stock";
+import { useCompare } from "@/components/compare/CompareProvider";
 
 type VehicleCardProps = {
-  vehicle: CatalogVehicle;
+  vehicle: CatalogVehicle | {
+    id: string;
+    title: string;
+    category: string;
+    coverImage: string;
+    coverFit?: "cover" | "contain";
+    price: string;
+    status?: string;
+  };
   index?: number;
   href?: string;
   linked?: boolean;
@@ -23,12 +33,20 @@ export default function VehicleCard({
   const destination = href ?? `/vehicles/${vehicle.id}`;
   const contain =
     "coverFit" in vehicle && vehicle.coverFit === "contain";
+  const status = getStockStatus(vehicle);
+  const { has, toggle } = useCompare();
+  const selected = has(vehicle.id);
 
   const body = (
     <>
-      <p className="text-xs uppercase tracking-[0.2em] text-[#6B7280]">
-        {vehicle.category}
-      </p>
+      <div className="flex items-start justify-between gap-3">
+        <p className="text-xs uppercase tracking-[0.2em] text-[#6B7280]">
+          {vehicle.category}
+        </p>
+        <p className="shrink-0 text-[10px] uppercase tracking-[0.2em] text-[#6B7280]">
+          {status}
+        </p>
+      </div>
       <h2 className="mt-2 font-serif text-2xl font-medium leading-tight text-[#111827] sm:text-3xl">
         {vehicle.title}
       </h2>
@@ -83,6 +101,20 @@ export default function VehicleCard({
       ) : (
         <div>{body}</div>
       )}
+
+      <div className={`${linked ? "mt-2" : "mt-3"} flex justify-end`}>
+        <button
+          type="button"
+          onClick={() => toggle(vehicle.id)}
+          className={`text-[11px] uppercase tracking-[0.2em] transition ${
+            selected
+              ? "text-[#111827]"
+              : "text-neutral-400 hover:text-neutral-900"
+          }`}
+        >
+          {selected ? "Added to compare" : "Compare"}
+        </button>
+      </div>
     </motion.article>
   );
 }
