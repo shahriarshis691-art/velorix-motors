@@ -6,6 +6,7 @@ export const hyundaiVehicles = [
     title: "Hyundai Creta",
     tagline: "The Ultimate Urban SUV with Contemporary Tech",
     coverImage: "/images/hyundai/creta.jpg",
+    coverFit: "contain",
     galleryImages: [
       "/images/hyundai/creta-front.jpg",
       "/images/hyundai/creta-interior.jpg",
@@ -72,6 +73,7 @@ export const hyundaiVehicles = [
     title: "Hyundai Santa Fe",
     tagline: "Flagship Luxury Family SUV with Bold Presence",
     coverImage: "/images/hyundai/santa-fe.jpg",
+    coverFit: "contain",
     galleryImages: [
       "/images/hyundai/santa-fe-front.jpg",
       "/images/hyundai/santa-fe-interior.jpg",

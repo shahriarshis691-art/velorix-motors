@@ -4,16 +4,20 @@ import { toyotaVehicles } from "@/src/data/toyotaVehicles";
 import { bmwVehicles } from "@/src/data/bmwVehicles";
 import { nissanVehicles } from "@/src/data/nissanVehicles";
 import { hyundaiVehicles } from "@/src/data/hyundaiVehicles";
+import { assertUniqueBrandImages } from "@/src/data/assertUniqueImages";
+
+const brandVehicles = [
+  ...hondaVehicles,
+  ...toyotaVehicles,
+  ...bmwVehicles,
+  ...nissanVehicles,
+  ...hyundaiVehicles,
+];
+
+assertUniqueBrandImages(brandVehicles);
 
 export function getCatalogVehicles() {
-  return [
-    ...hondaVehicles,
-    ...toyotaVehicles,
-    ...bmwVehicles,
-    ...nissanVehicles,
-    ...hyundaiVehicles,
-    ...vehiclesData,
-  ];
+  return [...brandVehicles, ...vehiclesData];
 }
 
 export function getVehicleById(id) {
