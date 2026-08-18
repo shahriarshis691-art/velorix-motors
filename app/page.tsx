@@ -8,6 +8,7 @@ import Collections from "@/components/Collections";
 import Services from "@/components/Services";
 import About from "@/components/About";
 import HeroShowcase from "@/components/HeroShowcase";
+import FounderMessage from "@/components/FounderMessage";
 import TestDriveModal from "@/components/TestDriveModal";
 
 export default function HomePage() {
@@ -29,6 +30,7 @@ export default function HomePage() {
       <Services />
       <About />
       <HeroShowcase />
+      <FounderMessage />
       <TestDriveModal
         open={appointmentOpen}
         onClose={() => setAppointmentOpen(false)}

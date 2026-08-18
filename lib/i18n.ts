@@ -25,6 +25,11 @@ export const dictionary = {
         "VELORIX MOTORS is a Dhaka import house for Japan-auction Toyotas, Hondas, BMWs, Nissans and Hyundais — Axio, Premio, Creta and the family cars Bangladesh actually drives. Every car is graded, shipped through Chattogram, and prepared for private delivery.",
       showcaseEyebrow: "SHOWCASE",
       showcaseTitle: "THE HOUSE",
+      founderEyebrow: "LEADERSHIP & VISION",
+      founderName: "SM SHAHRIAR WALID",
+      founderRole: "Founder & Managing Director, VELORIX MOTORS",
+      founderMessage:
+        "At Velorix Motors, our vision is to redefine the automotive experience by bringing premium, high-grade Japanese imports directly to car enthusiasts. We prioritize transparency, auction authenticity, and uncompromising quality to ensure every drive goes beyond ordinary expectations.",
       serviceItems: [
         {
           title: "JAPAN AUCTION SOURCING",
@@ -206,6 +211,11 @@ export const dictionary = {
         "ভেলোরিক্স মোটরস ঢাকার একটি ইমপোর্ট হাউস — জাপান নিলামের টয়োটা, হোন্ডা, বিএমডব্লিউ, নিসান ও হুন্দাই। এক্সিও, প্রেমিও, ক্রেটাসহ যে গাড়ি বাংলাদেশে চলে। প্রতিটি গাড়ি গ্রেড করা হয়, চট্টগ্রাম দিয়ে আসে, তারপর ব্যক্তিগত ডেলিভারির জন্য প্রস্তুত হয়।",
       showcaseEyebrow: "শোকেস",
       showcaseTitle: "হাউস",
+      founderEyebrow: "নেতৃত্ব ও ভিশন",
+      founderName: "SM SHAHRIAR WALID",
+      founderRole: "প্রতিষ্ঠাতা ও ম্যানেজিং ডিরেক্টর, ভেলোরিক্স মোটরস",
+      founderMessage:
+        "ভেলোরিক্স মোটর্সে আমাদের লক্ষ্য — প্রিমিয়াম, উচ্চ-গ্রেড জাপানি ইমপোর্ট সরাসরি গাড়িপ্রেমীদের কাছে পৌঁছে অটোমোটিভ অভিজ্ঞতাকে নতুনভাবে সংজ্ঞায়িত করা। স্বচ্ছতা, নিলামের সত্যতা এবং আপসহীন মান — যাতে প্রতিটি ড্রাইভ সাধারণ প্রত্যাশার বাইরে যায়।",
       serviceItems: [
         {
           title: "জাপান নিলাম",
