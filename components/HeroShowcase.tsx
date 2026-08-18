@@ -18,14 +18,15 @@ export default function HeroShowcase() {
         <h2 className="mt-3 text-center font-display text-3xl font-bold tracking-[0.14em] text-neutral-900">
           <span className="metallic-text">{t.home.showcaseTitle}</span>
         </h2>
-        <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-sm bg-neutral-100 sm:mt-12">
+        <div className="cinematic-frame group relative mt-10 aspect-[16/9] sm:mt-12">
           <Image
             src="/images/velorix-hero-coast.jpg"
             alt="VELORIX MOTORS — Japan-import cars prepared for Bangladesh"
             fill
             sizes="(min-width: 1280px) 72rem, 100vw"
-            className="object-cover object-[center_35%]"
+            className="cinematic-photo object-cover object-[center_35%] group-hover:scale-105 group-hover:brightness-100"
           />
+          <div className="cinematic-grade" />
         </div>
       </div>
     </section>

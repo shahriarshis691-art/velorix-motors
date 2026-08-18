@@ -113,6 +113,20 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
+@layer components {
+  .cinematic-frame {
+    @apply overflow-hidden rounded-2xl border border-white/10 bg-[#111827] shadow-2xl shadow-black/60;
+  }
+
+  .cinematic-photo {
+    @apply brightness-90 contrast-105 saturate-[0.85] transition-all duration-500 ease-out;
+  }
+
+  .cinematic-grade {
+    @apply pointer-events-none absolute inset-0 bg-gradient-to-tr from-teal-950/35 via-transparent to-emerald-900/20 mix-blend-multiply;
+  }
+}
+
 @layer utilities {
   .tracking-nav {
     letter-spacing: 0.2em;

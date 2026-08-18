@@ -13,9 +13,7 @@ const CARS = [
     href: "/brands/honda",
     image: "/images/honda-civic.jpg",
     alt: "Metallic grey Honda Civic sedan, front three-quarter view",
-    objectClass: "h-full w-full object-cover object-[50%_65%]",
-    panelClass: "bg-neutral-100",
-    hoverClass: "transition-transform duration-700 ease-out group-hover:scale-[1.04]",
+    objectClass: "object-[50%_65%]",
   },
   {
     id: "toyota",
@@ -23,9 +21,7 @@ const CARS = [
     href: "/brands/toyota",
     image: "/images/toyota-avalon.jpg",
     alt: "Silver Toyota sedan in a clean studio render, front three-quarter view",
-    objectClass: "h-full w-full object-cover object-center",
-    panelClass: "bg-neutral-100",
-    hoverClass: "transition-transform duration-700 ease-out group-hover:scale-[1.04]",
+    objectClass: "object-center",
   },
   {
     id: "bmw",
@@ -33,9 +29,7 @@ const CARS = [
     href: "/brands/bmw",
     image: "/images/bmw-5-series.jpg",
     alt: "Silver BMW 5 Series sedan in motion, front three-quarter view",
-    objectClass: "h-full w-full object-cover object-center",
-    panelClass: "bg-neutral-100",
-    hoverClass: "transition-transform duration-700 ease-out group-hover:scale-[1.04]",
+    objectClass: "object-center",
   },
   {
     id: "nissan",
@@ -43,9 +37,7 @@ const CARS = [
     href: "/brands/nissan",
     image: "/images/nissan-versa.jpg",
     alt: "White Nissan Versa sedan on a studio background",
-    objectClass: "h-full w-full object-contain object-center p-3 sm:p-4",
-    panelClass: "bg-neutral-100",
-    hoverClass: "transition-transform duration-700 ease-out group-hover:scale-[1.04]",
+    objectClass: "object-center",
   },
   {
     id: "hyundai",
@@ -53,9 +45,7 @@ const CARS = [
     href: "/brands/hyundai",
     image: "/images/hyundai-alcazar.jpg",
     alt: "Dark metallic Hyundai Alcazar SUV, front three-quarter studio view",
-    objectClass: "h-full w-full object-contain object-center p-4",
-    panelClass: "bg-white",
-    hoverClass: "",
+    objectClass: "object-center",
   },
 ] as const;
 
@@ -116,7 +106,7 @@ function CatalogPanel({
     >
       <Link
         href={car.href}
-        className={`group relative isolate block aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-sm transition duration-500 hover:shadow-md ${car.panelClass}`}
+        className="cinematic-frame group relative isolate block aspect-[16/10] w-full"
         aria-label={`View ${car.name} models`}
       >
         <Image
@@ -124,11 +114,12 @@ function CatalogPanel({
           alt={car.alt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className={`${car.objectClass} ${car.hoverClass}`}
+          className={`cinematic-photo h-full w-full object-cover group-hover:scale-105 group-hover:brightness-100 ${car.objectClass}`}
           priority={index < 2}
         />
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+        <div className="cinematic-grade" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
 
         <span className="absolute bottom-4 left-4 z-10 font-display text-[11px] font-semibold uppercase tracking-[0.35em] text-white sm:text-xs">
           {car.name}
