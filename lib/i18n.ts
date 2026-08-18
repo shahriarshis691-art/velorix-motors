@@ -13,10 +13,11 @@ export const dictionary = {
     home: {
       explore: "Explore Collection",
       testDrive: "Book Test Drive",
-      garage: "THE GARAGE",
-      collections: "COLLECTIONS",
+      garage: "FEATURED",
+      collections: "INVENTORY",
       collectionsLead:
-        "Japan-auction Toyotas, Hondas, BMWs, Nissans and Hyundais prepared for Dhaka delivery.",
+        "High-demand Japan-import SUVs and sedans — Prado, Harrier, Vezel and Crown — prepared for Bangladesh.",
+      inquire: "Inquire / View Details",
       servicesEyebrow: "AFTERCARE",
       servicesTitle: "SERVICES",
       aboutEyebrow: "THE HOUSE",
@@ -199,10 +200,11 @@ export const dictionary = {
     home: {
       explore: "কালেকশন দেখুন",
       testDrive: "টেস্ট ড্রাইভ",
-      garage: "গ্যারেজ",
-      collections: "কালেকশন",
+      garage: "ফিচার্ড",
+      collections: "ইনভেন্টরি",
       collectionsLead:
-        "জাপান নিলামের টয়োটা, হোন্ডা, বিএমডব্লিউ, নিসান ও হুন্দাই — ঢাকায় ডেলিভারির জন্য প্রস্তুত।",
+        "বাংলাদেশের চাহিদাসম্পন্ন জাপান-ইমপোর্ট — প্রাডো, হ্যারিয়ার, ভেজেল ও ক্রাউন।",
+      inquire: "জিজ্ঞাসা / বিস্তারিত",
       servicesEyebrow: "আফটারকেয়ার",
       servicesTitle: "সার্ভিস",
       aboutEyebrow: "হাউস",
